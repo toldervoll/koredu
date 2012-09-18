@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Koredu</string>
+  <string name="menu_add_peer">Ask where someone is</string>
+  <string name="peer_approval_dialog_approve">Approve</string>
+  <string name="peer_approval_dialog_deny">Deny</string>
+  <string name="contact_search_hint">Search contacts</string>
+  <string name="search_settings_description">Koredu contact search</string>
+</resources>

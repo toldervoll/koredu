@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Koredu.iml" filepath="$PROJECT_DIR$/Koredu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Koredu-AppEngine/Koredu-AppEngine.iml" filepath="$PROJECT_DIR$/../Koredu-AppEngine/Koredu-AppEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Koredu-common/Koredu-common.iml" filepath="$PROJECT_DIR$/../Koredu-common/Koredu-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Koredu-test/Koredu-test.iml" filepath="$PROJECT_DIR$/../Koredu-test/Koredu-test.iml" />
+      <module fileurl="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/library/library.iml" filepath="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/library/library.iml" />
+      <module fileurl="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/parent.iml" filepath="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/parent.iml" />
+    </modules>
+  </component>
+</project>
+

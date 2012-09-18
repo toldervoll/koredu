@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/war/WEB-INF/lib/gcm-server.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/war/WEB-INF/lib/objectify-3.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/war/WEB-INF/lib/commons-codec-1.6.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/war/WEB-INF/lib/jackson-core-2.0.5.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/war/WEB-INF/lib/jackson-databind-2.0.5.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/war/WEB-INF/lib/guava-12.0.1.jar!/" />
+    <varelement var="file://$MODULE_DIR$/../Koredu-common/src" kind="linksrc:" value="common-src" />
+    <conelement value="com.google.appengine.eclipse.core.GAE_CONTAINER/v1" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/../Koredu-common/src" expected_position="1" />
+    </src_description>
+  </component>
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src" />
+        </sourceRoots>
+      </configuration>
+      <facet type="google-app-engine" name="Google App Engine">
+        <configuration>
+          <password>dfc8dfcddfc8dfcedfc7dfc8dfcedfd0dfc5dfdddfcfdfdedfd0dfdfdfc9dfce</password>
+          <persistence-api>JPA</persistence-api>
+          <sdk-home-path>$USER_HOME$/AppEngine/appengine-java-sdk-1.7.1</sdk-home-path>
+          <email>thomas.oldervoll@zenior.no</email>
+        </configuration>
+      </facet>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/war/WEB-INF/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module-library">
+      <library name="gcm-server.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/gcm-server.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="objectify-3.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/objectify-3.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="commons-codec-1.6.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/commons-codec-1.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jackson-core-2.0.5.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/jackson-core-2.0.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jackson-databind-2.0.5.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/jackson-databind-2.0.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="guava-12.0.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/guava-12.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="junit4">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="Koredu-common" exported="" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/appengine-api-labs.jar!/" />
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/appengine-jsr107cache-1.7.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/geronimo-jpa_3.0_spec-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/jackson-annotations-2.0.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/ormlite-core-4.41.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/war/WEB-INF/lib/objectify-3.1.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Servlet API" level="project" />
+  </component>
+</module>
+

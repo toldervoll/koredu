@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="easymock-3">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Java/libs/easymock-3.1" />
+      <root url="file://$USER_HOME$/Java/libs/objenesis-1.2" />
+      <root url="jar://$USER_HOME$/Java/libs/cglib-nodep-2.2.3.jar!/" />
+      <root url="file://$USER_HOME$/Java/libs/easymock-3.1" />
+      <root url="file://$USER_HOME$/Java/libs/objenesis-1.2" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Java/libs/easymock-3.1" />
+      <root url="file://$USER_HOME$/Java/libs/objenesis-1.2" />
+      <root url="file://$USER_HOME$/Java/libs/easymock-3.1" />
+      <root url="file://$USER_HOME$/Java/libs/objenesis-1.2" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Java/libs/easymock-3.1" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Java/libs/objenesis-1.2" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Java/libs/easymock-3.1" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$USER_HOME$/Java/libs/objenesis-1.2" recursive="false" type="SOURCES" />
+  </library>
+</component>

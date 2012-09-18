@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/library" />
+    <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/demos" />
+    <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/fragments" />
+    <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/known-bugs" />
+    <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/roboguice" />
+    <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/styled" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/demos/pom.xml" />
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/fragments/pom.xml" />
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/known-bugs/pom.xml" />
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/pom.xml" />
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/roboguice/pom.xml" />
+        <option value="$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/styled/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
+

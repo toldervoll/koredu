@@ -1,0 +1,32 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Koredu-AppEngine:Web exploded">
+    <output-path>$PROJECT_DIR$/../Koredu-AppEngine/war</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Koredu-AppEngine/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Koredu-AppEngine" />
+          <element id="module-output" name="Koredu-common" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="geronimo-jpa_3.0_spec-1.1.1.jar" module-name="Koredu-common" />
+          <element id="library" level="module" name="ormlite-core-4.41.jar" module-name="Koredu-common" />
+          <element id="library" level="module" name="gcm-server.jar" module-name="Koredu-AppEngine" />
+          <element id="library" level="module" name="objectify-3.1.jar" module-name="Koredu-AppEngine" />
+          <element id="library" level="module" name="commons-codec-1.6.jar" module-name="Koredu-AppEngine" />
+          <element id="library" level="module" name="jackson-core-2.0.5.jar" module-name="Koredu-AppEngine" />
+          <element id="library" level="module" name="jackson-databind-2.0.5.jar" module-name="Koredu-AppEngine" />
+          <element id="library" level="module" name="guava-12.0.1.jar" module-name="Koredu-AppEngine" />
+          <element id="library" level="module" name="junit4" module-name="Koredu-AppEngine" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/appengine-api-labs.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/appengine-jsr107cache-1.7.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/geronimo-jpa_3.0_spec-1.1.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/jackson-annotations-2.0.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/ormlite-core-4.41.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

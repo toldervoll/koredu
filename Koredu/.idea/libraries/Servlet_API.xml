@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Servlet API">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/AppEngine/appengine-java-sdk-1.7.1/lib/shared/el-api.jar!/" />
+      <root url="jar://$USER_HOME$/AppEngine/appengine-java-sdk-1.7.1/lib/shared/jsp-api.jar!/" />
+      <root url="jar://$USER_HOME$/AppEngine/appengine-java-sdk-1.7.1/lib/shared/servlet-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
