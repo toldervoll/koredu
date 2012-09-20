@@ -15,6 +15,7 @@ import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+import no.koredu.android.auth.AccountList;
 import no.koredu.android.database.DatabaseManager;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class MainActivity extends SherlockMapActivity {
   private static final int MENU_ITEM_CLEAR_MAP = Menu.FIRST + 1;
   private static final int MENU_ITEM_ADD_DUMMY_DATA = Menu.FIRST + 2;
   private static final int MENU_ITEM_STOP_LOCATION_PUBLISHING = Menu.FIRST + 3;
+  private static final int MENU_ITEM_SWITCH_ACCOUNT = Menu.FIRST + 4;
 
   private static final int DIALOG_APPROVE_PEER = 0;
 
@@ -59,7 +61,6 @@ public class MainActivity extends SherlockMapActivity {
     bus = reg.getBus();
     peeringClient = reg.getPeeringClient();
     locationPublisher = reg.getLocationPublisher();
-
     setContentView(R.layout.main);
     mapView = (MapView) findViewById(R.id.mapview);
     mapView.setBuiltInZoomControls(true);
@@ -124,6 +125,8 @@ public class MainActivity extends SherlockMapActivity {
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
     menu.add(Menu.NONE, MENU_ITEM_STOP_LOCATION_PUBLISHING, Menu.CATEGORY_SYSTEM, "Stop location publishing")
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+    menu.add(Menu.NONE, MENU_ITEM_SWITCH_ACCOUNT, Menu.CATEGORY_SYSTEM, "Switch account")
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
     return true;
   }
 
@@ -141,6 +144,8 @@ public class MainActivity extends SherlockMapActivity {
         return true;
       case MENU_ITEM_STOP_LOCATION_PUBLISHING:
         locationPublisher.stop();
+      case MENU_ITEM_SWITCH_ACCOUNT:
+        switchAccount();
       default:
         return false;
     }
@@ -159,6 +164,10 @@ public class MainActivity extends SherlockMapActivity {
     db.putPeer(new Peer("Thomas Oldervoll", "+4748193450", 0, 0, 0.0f, System.currentTimeMillis(), Long.MAX_VALUE));
     db.putPeer(new Peer("Android 2.2", "+5556", 0, 0, 0.0f, System.currentTimeMillis(), Long.MAX_VALUE));
     db.putPeer(new Peer("Android 4.0", "+5554", 0, 0, 0.0f, System.currentTimeMillis(), Long.MAX_VALUE));
+  }
+
+  private void switchAccount() {
+    startActivity(new Intent(this, AccountList.class));
   }
 
   @Override

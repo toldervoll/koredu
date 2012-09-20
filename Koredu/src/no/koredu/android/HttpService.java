@@ -8,24 +8,32 @@ import android.util.Log;
 import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpService extends IntentService {
 
+  public static final String LOCAL_BASE_URL = "http://10.0.2.2:8888";
+  public static final String PROD_BASE_URL = "https://koreduno.appspot.com";
+  public static final boolean USE_LOCAL_SERVER = true;
   public static final String EXTRA_PATH = "EXTRA_PATH";
   public static final String EXTRA_DATA = "EXTRA_DATA";
 
   private static final String SERVICE_NAME = "HttpService";
   private static final String TAG = HttpService.class.getName();
-  private static final String LOCAL_BASE_URL = "http://10.0.2.2:8888";
-  private static final String PROD_BASE_URL = "http://koreduno.appspot.com";
-  private static final boolean USE_LOCAL_SERVER = true;
+
+  private AccountProvider accountProvider;
 
   public HttpService() {
     super(SERVICE_NAME);
     disableConnectionReuseIfNecessary();
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    accountProvider = ObjectRegistry.get(this).getAccountProvider();
   }
 
   public static void post(Context context, String path, String data) {
@@ -33,8 +41,8 @@ public class HttpService extends IntentService {
         .setAction(Intent.ACTION_RUN)
         .putExtra(EXTRA_PATH, path)
         .putExtra(EXTRA_DATA, data));
-  }  
-    
+  }
+
   @Override
   protected void onHandleIntent(Intent intent) {
     String path = intent.getStringExtra(EXTRA_PATH);
@@ -54,16 +62,21 @@ public class HttpService extends IntentService {
     // TODO: retry with exponential backoff
     byte[] payloadBytes = data.getBytes(Charsets.UTF_8);
     URL url = null;
-    HttpURLConnection urlConnection = null;
+    HttpsURLConnection urlConnection = null;
     try {
-      url = new URL(getBaseUrl() + path);    
-      urlConnection = (HttpURLConnection) url.openConnection();
+      url = new URL(getBaseUrl() + path);
+      urlConnection = (HttpsURLConnection) url.openConnection();
       urlConnection.setDoOutput(true);
       urlConnection.setFixedLengthStreamingMode(payloadBytes.length);
       urlConnection.setRequestProperty("Content-Type", "application/json");
+      Log.v(TAG, "Getting auth cookie, thread=" + Thread.currentThread().getName());
+      String authCookie = accountProvider.getAuthenticationCookie();
+      if (authCookie != null) {
+        urlConnection.setRequestProperty("Cookie", authCookie);
+      }
       OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
       out.write(payloadBytes);
-      out.close();      
+      out.close();
       InputStream in = new BufferedInputStream(urlConnection.getInputStream());
       byte[] responseData = new byte[in.available()];
       ByteStreams.readFully(in, responseData);
@@ -73,16 +86,16 @@ public class HttpService extends IntentService {
       throw new RuntimeException("Failed to send payload to " + url, e);
     } finally {
       urlConnection.disconnect();
-    }    
+    }
   }
-  
+
   private String getBaseUrl() {
-    if (USE_LOCAL_SERVER && "google_sdk".equals( Build.PRODUCT )) {
+    if (USE_LOCAL_SERVER && "google_sdk".equals(Build.PRODUCT)) {
       return LOCAL_BASE_URL;
     } else {
       return PROD_BASE_URL;
     }
   }
 
-  
+
 }

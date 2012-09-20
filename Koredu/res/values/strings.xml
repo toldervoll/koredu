@@ -6,4 +6,5 @@
   <string name="peer_approval_dialog_deny">Deny</string>
   <string name="contact_search_hint">Search contacts</string>
   <string name="search_settings_description">Koredu contact search</string>
+  <string name="hello">Hello from auth</string>
 </resources>

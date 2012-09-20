@@ -5,8 +5,8 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import no.koredu.android.Peer;
 import no.koredu.server.DAO;
 import no.koredu.server.KoreduApi;
+import no.koredu.server.KoreduUser;
 import no.koredu.server.TokenFactory;
-import no.koredu.server.User;
 import no.koredu.testing.ActionTracker;
 import no.koredu.testing.DirectObjectPusher;
 import no.koredu.testing.MockKoreduClient;
@@ -89,7 +89,7 @@ public class PeeringTest {
   }
 
   @Test
-  public void testInviteBothKnown() {
+  public void testInvite_bothKnown() {
     try {
       inviterPeer = new Peer("Ann Oldervoll", INVITEE_CANONICAL_PHONE_NUMBER);  // peer of inviter, i.e. invitee
       inviterPeer.setId(1);
@@ -130,9 +130,9 @@ public class PeeringTest {
   }
 
   @Test
-  public void testInviteKnownInviterUnknownInvitee() {
+  public void testInvite_onlyInviterKnown() {
     try {
-      // inviterPeer is unknwon since the phone number does not match due to different formatting
+      // inviterPeer is unknown since the phone number does not match due to different formatting
       inviterPeer = new Peer("Ann Oldervoll", INVITEE_PHONE_NUMBER);  // peer of inviter, i.e. invitee
       inviterPeer.setId(1);
       inviteePeer = new Peer("Thomas Oldervoll", INVITER_CANONICAL_PHONE_NUMBER); // peer of invitee, i.e. inviter
@@ -179,7 +179,7 @@ public class PeeringTest {
   }
 
   @Test
-  public void testInviteKnownInviterNewInvitee() {
+  public void testInvite_knownInviterNewInvitee() {
     try {
       // inviterPeer is unknown since no phone number is known (maybe not a user yet)
       inviterPeer = new Peer("Ann Oldervoll", INVITEE_PHONE_NUMBER);  // peer of inviter, i.e. invitee
@@ -235,7 +235,7 @@ public class PeeringTest {
   }
 
   @Test
-  public void testInviteUnknownInviterKnown() {
+  public void testInvite_onlyInviteeKnown() {
     try {
       // inviterPeer is unknown since no phone number is known (maybe not a user yet)
       inviterPeer = new Peer("Ann Oldervoll", INVITEE_CANONICAL_PHONE_NUMBER);  // peer of inviter, i.e. invitee
@@ -291,7 +291,7 @@ public class PeeringTest {
   }
 
   @Test
-  public void testInviteBothUnknown() {
+  public void testInvite_bothUnknown() {
     try {
       // inviterPeer is unknown since no phone number is known (maybe not a user yet)
       inviterPeer = new Peer("Ann Oldervoll", INVITEE_CANONICAL_PHONE_NUMBER);  // peer of inviter, i.e. invitee
@@ -354,7 +354,7 @@ public class PeeringTest {
 
   private void addUser(String deviceId, String phoneNumber) {
     DAO dao = koreduApi.getDao();
-    User user = dao.getOrCreateUser(deviceId);
+    KoreduUser user = dao.getOrCreateUser(deviceId);
     dao.setPhoneNumber(user.getId(), phoneNumber);
   }
 

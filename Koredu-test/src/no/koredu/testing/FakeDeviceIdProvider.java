@@ -17,4 +17,9 @@ public class FakeDeviceIdProvider implements DeviceIdProvider {
   public String get() {
     return deviceId;
   }
+
+  @Override
+  public void sendRegistration() {
+    // ignored
+  }
 }

@@ -4,7 +4,6 @@ import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.Query;
 import com.googlecode.objectify.util.DAOBase;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.UserLocation;
@@ -27,34 +26,34 @@ public class DAO extends DAOBase {
   }
 
   static {
-    ObjectifyService.register(User.class);
+    ObjectifyService.register(KoreduUser.class);
     ObjectifyService.register(PeeringSession.class);
     ObjectifyService.register(PhoneNumberVerification.class);
     ObjectifyService.register(UserLocation.class);
   }
 
-  public User getUserById(long userId) {
-    return ofy().find(User.class, userId);
+  public KoreduUser getUserById(long userId) {
+    return ofy().find(KoreduUser.class, userId);
   }
 
-  public User getUserByDeviceId(String deviceId) {
-    return ofy().query(User.class)
+  public KoreduUser getUserByDeviceId(String deviceId) {
+    return ofy().query(KoreduUser.class)
         .filter("deviceId", deviceId)
         .get();
   }
 
-  public User getUserByPhoneNumber(String phoneNumber) {
-    return ofy().query(User.class)
+  public KoreduUser getUserByPhoneNumber(String phoneNumber) {
+    return ofy().query(KoreduUser.class)
         .filter("phoneNumber", phoneNumber)
         .get();
   }
 
-  public User getOrCreateUser(String deviceId) {
+  public KoreduUser getOrCreateUser(String deviceId) {
     Objectify ofy = ObjectifyService.beginTransaction();
     try {
-      User user = getUserByDeviceId(deviceId);
+      KoreduUser user = getUserByDeviceId(deviceId);
       if (user == null) {
-        user = new User(deviceId);
+        user = new KoreduUser(deviceId);
         ofy.put(user);
       } else {
         log.info("using existing user " + user.getId());
@@ -75,14 +74,14 @@ public class DAO extends DAOBase {
 
   public PeeringSession putSession(final PeeringSession session) {
     log.info("Saving session " + session);
-    User inviter = getOrCreateUser(session.getInviterDeviceId());
+    KoreduUser inviter = getOrCreateUser(session.getInviterDeviceId());
     log.info("found inviter " + inviter.getId() + " with phoneNumber=" + inviter.getPhoneNumber());
     session.setInviterId(inviter.getId());
     session.setInviterPhoneNumber(inviter.getPhoneNumber());
     session.setState(PeeringSession.State.CREATED);
     if (session.getInviteeId() == null) {
       log.info("no inviteeId, looking up by phone number " + session.getInviteePhoneNumber());
-      User invitee = getUserByPhoneNumber(session.getInviteePhoneNumber());
+      KoreduUser invitee = getUserByPhoneNumber(session.getInviteePhoneNumber());
       if (invitee != null) {
         log.info("found invitee " + invitee.getId());
         session.setInviteeId(invitee.getId());
@@ -160,7 +159,7 @@ public class DAO extends DAOBase {
   }
 
   public PhoneNumberVerification createPhoneNumberVerification(final PhoneNumberVerification verification) {
-    final User reportingUser = getUserByDeviceId(verification.getReportingDeviceId());
+    final KoreduUser reportingUser = getUserByDeviceId(verification.getReportingDeviceId());
     if (reportingUser == null) {
       throw new RuntimeException("No reporting user found for reportingDeviceId " + verification.getReportingDeviceId());
     }
@@ -200,9 +199,9 @@ public class DAO extends DAOBase {
   }
 
   public void setPhoneNumber(Long userId, final String phoneNumber) {
-    update(userId, User.class, new Function<User, User>() {
+    update(userId, KoreduUser.class, new Function<KoreduUser, KoreduUser>() {
       @Override
-      public User apply(User user) {
+      public KoreduUser apply(KoreduUser user) {
         user.setPhoneNumber(phoneNumber);
         return user;
       }
@@ -254,7 +253,7 @@ public class DAO extends DAOBase {
     }
   }
 
-  public PeeringSession setSessionInvitee(Long sessionId, final User invitee, final Integer inviteePeerId,
+  public PeeringSession setSessionInvitee(Long sessionId, final KoreduUser invitee, final Integer inviteePeerId,
                                           final PeeringSession.State state) {
     return update(sessionId, PeeringSession.class,
         new Function<PeeringSession, PeeringSession>() {

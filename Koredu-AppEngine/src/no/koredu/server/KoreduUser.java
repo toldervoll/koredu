@@ -2,7 +2,7 @@ package no.koredu.server;
 
 import javax.persistence.Id;
 
-public class User {
+public class KoreduUser {
 
   @Id
   private Long id;
@@ -12,11 +12,11 @@ public class User {
   private String deviceId;
   private long registrationTime;
 
-  User() {
+  KoreduUser() {
     // needed for Objectify
   }
 
-  public User(String deviceId) {
+  public KoreduUser(String deviceId) {
     this.deviceId = deviceId;
     registrationTime = System.currentTimeMillis();
   }

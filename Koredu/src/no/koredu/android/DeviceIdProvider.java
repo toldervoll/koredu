@@ -5,4 +5,6 @@ package no.koredu.android;
  */
 public interface DeviceIdProvider {
   String get();
+
+  void sendRegistration();
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
+import no.koredu.android.auth.AndroidAccountProvider;
 import no.koredu.android.database.AndroidDatabaseManager;
 import no.koredu.android.database.DatabaseManager;
 
@@ -29,6 +30,7 @@ public class ObjectRegistry {
   private final LocationPublisher locationPublisher;
   private final PeeringClient peeringClient;
   private final SmsProcessor smsProcessor;
+  private final AccountProvider accountProvider;
 
   public static synchronized ObjectRegistry get(Context context) {
     if (instance == null) {
@@ -60,6 +62,7 @@ public class ObjectRegistry {
     peeringClient = new PeeringClient(databaseManager, deviceIdProvider, displayNameResolver, objectSender,
         locationPublisher, userInteraction, phoneNumberVerifier, bus);
     smsProcessor = new SmsProcessor(phoneNumberVerifier, peeringClient);
+    accountProvider = new AndroidAccountProvider(context);
     long duration = System.currentTimeMillis() - startTime;
     Log.v(TAG, "initialized in " + duration + " ms");
   }
@@ -111,4 +114,9 @@ public class ObjectRegistry {
   public SmsProcessor getSmsProcessor() {
     return smsProcessor;
   }
+
+  public AccountProvider getAccountProvider() {
+    return accountProvider;
+  }
+
 }

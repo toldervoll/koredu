@@ -57,6 +57,10 @@
           android:resource="@xml/searchable"/>
     </activity>
 
+    <activity android:name=".auth.AccountList"
+              android:label="@string/app_name">
+    </activity>
+
     <receiver android:name=".SmsReceiver">
       <intent-filter>
         <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
@@ -93,6 +97,12 @@
         android:name=".HttpService"
         android:exported="false">
     </service>
+
+    <service
+        android:name=".auth.AuthenticationService"
+        android:exported="false">
+    </service>
+
   </application>
 
 </manifest>
