@@ -1,10 +1,10 @@
 package no.koredu.server;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.DAOBase;
+import no.koredu.common.Invite;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.UserLocation;
 
@@ -36,24 +36,19 @@ public class DAO extends DAOBase {
     return ofy().find(KoreduUser.class, userId);
   }
 
-  public KoreduUser getUserByDeviceId(String deviceId) {
+  public KoreduUser getUser(String gaiaId, String deviceId) {
     return ofy().query(KoreduUser.class)
+        .filter("gaiaId", gaiaId)
         .filter("deviceId", deviceId)
         .get();
   }
 
-  public KoreduUser getUserByPhoneNumber(String phoneNumber) {
-    return ofy().query(KoreduUser.class)
-        .filter("phoneNumber", phoneNumber)
-        .get();
-  }
-
-  public KoreduUser getOrCreateUser(String deviceId) {
+  public KoreduUser getOrCreateUser(String gaiaId, String displayName, String deviceId) {
     Objectify ofy = ObjectifyService.beginTransaction();
     try {
-      KoreduUser user = getUserByDeviceId(deviceId);
+      KoreduUser user = getUser(gaiaId, deviceId);
       if (user == null) {
-        user = new KoreduUser(deviceId);
+        user = new KoreduUser(gaiaId, displayName, deviceId);
         ofy.put(user);
       } else {
         log.info("using existing user " + user.getId());
@@ -72,49 +67,13 @@ public class DAO extends DAOBase {
     }
   }
 
-  public PeeringSession putSession(final PeeringSession session) {
+  public PeeringSession createSession(final PeeringSession session, String gaiaId, String displayName) {
     log.info("Saving session " + session);
-    KoreduUser inviter = getOrCreateUser(session.getInviterDeviceId());
-    log.info("found inviter " + inviter.getId() + " with phoneNumber=" + inviter.getPhoneNumber());
+    KoreduUser inviter = getOrCreateUser(gaiaId, displayName, session.getInviterDeviceId());
     session.setInviterId(inviter.getId());
-    session.setInviterPhoneNumber(inviter.getPhoneNumber());
     session.setState(PeeringSession.State.CREATED);
-    if (session.getInviteeId() == null) {
-      log.info("no inviteeId, looking up by phone number " + session.getInviteePhoneNumber());
-      KoreduUser invitee = getUserByPhoneNumber(session.getInviteePhoneNumber());
-      if (invitee != null) {
-        log.info("found invitee " + invitee.getId());
-        session.setInviteeId(invitee.getId());
-        session.setInviteePhoneNumber(invitee.getPhoneNumber());
-        session.setInviteeDeviceId(invitee.getDeviceId());
-      }
-    }
-    if (needsToken(session)) {
-      log.info("generating token for sms invite");
-      PeeringSession storedSession = putWithNewToken(
-          new Function<String, PeeringSession>() {
-            @Override
-            public PeeringSession apply(String inviteToken) {
-              return getSessionByToken(inviteToken);
-            }
-          },
-          new Function<String, PeeringSession>() {
-            @Override
-            public PeeringSession apply(String inviteToken) {
-              session.setInviteToken(inviteToken);
-              return session;
-            }
-          }
-      );
-      return storedSession;
-    } else {
-      ofy().put(session);
-      return session;
-    }
-  }
-
-  private boolean needsToken(final PeeringSession session) {
-    return (session.getInviteeId() == null) || (session.getInviterPhoneNumber() == null);
+    ofy().put(session);
+    return session;
   }
 
   private <T> T putWithNewToken(Function<String, T> objectFinder, Function<String, T> objectUpdater) {
@@ -148,95 +107,6 @@ public class DAO extends DAOBase {
     return updatedObject;
   }
 
-  public PeeringSession getSessionByToken(String inviteToken) {
-    return getSessionByToken(ofy(), inviteToken);
-  }
-
-  private PeeringSession getSessionByToken(Objectify ofy, String inviteToken) {
-    return ofy().query(PeeringSession.class)
-        .filter("inviteToken", inviteToken)
-        .get();
-  }
-
-  public PhoneNumberVerification createPhoneNumberVerification(final PhoneNumberVerification verification) {
-    final KoreduUser reportingUser = getUserByDeviceId(verification.getReportingDeviceId());
-    if (reportingUser == null) {
-      throw new RuntimeException("No reporting user found for reportingDeviceId " + verification.getReportingDeviceId());
-    }
-    verification.setReportingUserId(reportingUser.getId());
-    boolean alreadyVerified = getUserById(verification.getUserId()).getPhoneNumber() != null;
-    if (alreadyVerified) {
-      verification.setVerified();
-      ofy().put(verification);
-      return verification;
-    } else {
-      return putWithNewToken(
-          new Function<String, PhoneNumberVerification>() {
-            @Override
-            public PhoneNumberVerification apply(String verificationToken) {
-              return getPhoneNumberVerificationByToken(verificationToken);
-            }
-          },
-          new Function<String, PhoneNumberVerification>() {
-            @Override
-            public PhoneNumberVerification apply(String verificationToken) {
-              verification.setToken(verificationToken);
-              return verification;
-            }
-          }
-      );
-    }
-  }
-
-  public PhoneNumberVerification getPhoneNumberVerificationByToken(String verificationToken) {
-    return getPhoneNumberVerificationByToken(ofy(), verificationToken);
-  }
-
-  private PhoneNumberVerification getPhoneNumberVerificationByToken(Objectify ofy, String verificationToken) {
-    return ofy.query(PhoneNumberVerification.class)
-        .filter("token", verificationToken)
-        .get();
-  }
-
-  public void setPhoneNumber(Long userId, final String phoneNumber) {
-    update(userId, KoreduUser.class, new Function<KoreduUser, KoreduUser>() {
-      @Override
-      public KoreduUser apply(KoreduUser user) {
-        user.setPhoneNumber(phoneNumber);
-        return user;
-      }
-    });
-    for (PeeringSession session : getActiveSessionsForInviter(userId)) {
-      update(session.getId(), PeeringSession.class, new Function<PeeringSession, PeeringSession>() {
-        @Override
-        public PeeringSession apply(PeeringSession session) {
-          session.setInviterPhoneNumber(phoneNumber);
-          return session;
-        }
-      });
-    }
-    for (PeeringSession session : getActiveSessionsForInvitee(userId)) {
-      update(session.getId(), PeeringSession.class, new Function<PeeringSession, PeeringSession>() {
-        @Override
-        public PeeringSession apply(PeeringSession session) {
-          session.setInviteePhoneNumber(phoneNumber);
-          return session;
-        }
-      });
-    }
-
-  }
-
-  private PeeringSession setSessionState(Long sessionId, final PeeringSession.State state) {
-    return update(sessionId, PeeringSession.class, new Function<PeeringSession, PeeringSession>() {
-      @Override
-      public PeeringSession apply(PeeringSession session) {
-        session.setState(state);
-        return session;
-      }
-    });
-  }
-
   public <T> T update(Long id, Class<T> clazz, Function<T, T> updater) {
     Objectify ofy = ObjectifyService.beginTransaction();
     try {
@@ -251,32 +121,6 @@ public class DAO extends DAOBase {
         ofy.getTxn().rollback();
       }
     }
-  }
-
-  public PeeringSession setSessionInvitee(Long sessionId, final KoreduUser invitee, final Integer inviteePeerId,
-                                          final PeeringSession.State state) {
-    return update(sessionId, PeeringSession.class,
-        new Function<PeeringSession, PeeringSession>() {
-          @Override
-          public PeeringSession apply(PeeringSession session) {
-            session.setInviteeId(invitee.getId());
-            session.setInviteePhoneNumber(invitee.getPhoneNumber());
-            session.setInviteeDeviceId(invitee.getDeviceId());
-            session.setInviteePeerId(inviteePeerId);
-            session.setState(state);
-            return session;
-          }
-        });
-  }
-
-  public Iterable<PeeringSession> getPendingSessions(Long userId) {
-    Iterable<PeeringSession> inviterSessions = ofy().query(PeeringSession.class)
-        .filter("inviterId", userId)
-        .filter("state", PeeringSession.State.PENDING_VERIFICATION);
-    Iterable<PeeringSession> inviteeSessions = ofy().query(PeeringSession.class)
-        .filter("inviteeId", userId)
-        .filter("state", PeeringSession.State.PENDING_VERIFICATION);
-    return Iterables.concat(inviterSessions, inviteeSessions);
   }
 
   public PeeringSession setSessionApproval(long sessionId, boolean approved) {
@@ -314,29 +158,31 @@ public class DAO extends DAOBase {
         .filter("inviteeId", inviteeId);
   }
 
-  public PhoneNumberVerification setPhoneNumberToVerify(Long phoneNumberVerificationId, final String phoneNumber) {
-    return update(phoneNumberVerificationId, PhoneNumberVerification.class,
-        new Function<PhoneNumberVerification, PhoneNumberVerification>() {
-          @Override
-          public PhoneNumberVerification apply(PhoneNumberVerification phoneNumberVerification) {
-            phoneNumberVerification.setPhoneNumber(phoneNumber);
-            return phoneNumberVerification;
-          }
-        });
-  }
-
-  public PhoneNumberVerification setPhoneNumberVerified(Long phoneNumberVerificationId) {
-    return update(phoneNumberVerificationId, PhoneNumberVerification.class,
-        new Function<PhoneNumberVerification, PhoneNumberVerification>() {
-          @Override
-          public PhoneNumberVerification apply(PhoneNumberVerification phoneNumberVerification) {
-            phoneNumberVerification.setVerified();
-            return phoneNumberVerification;
-          }
-        });
-  }
-
   public Iterable<PeeringSession> getAllSessions() {
     return ofy().query(PeeringSession.class);
   }
+
+  public Invite putInvite(final Invite invite) {
+    return putWithNewToken(
+        new Function<String, Invite>() {
+          @Override
+          public Invite apply(String token) {
+            return getInviteByToken(token);
+          }
+        },
+        new Function<String, Invite>() {
+          @Override
+          public Invite apply(String token) {
+            invite.setToken(token);
+            return invite;
+          }
+        }
+    );
+  }
+
+  public Invite getInviteByToken(String token) {
+    return ofy().query(Invite.class).filter("token", token).get();
+
+  }
+
 }

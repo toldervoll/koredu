@@ -2,6 +2,7 @@ package no.koredu.android;
 
 import com.squareup.otto.Bus;
 import no.koredu.android.database.DatabaseManager;
+import no.koredu.common.InviteReply;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.UserLocation;
 import no.koredu.common.Verification;
@@ -38,32 +39,22 @@ public class PeeringClient {
     Peer peer = db.getPeer(peerId);
     // TODO: let user specify duration
     PeeringSession session =
-        new PeeringSession(deviceIdProvider.get(), peer.getId(), peer.getUserId(), peer.getPhoneNumber(), 60);
+        new PeeringSession(deviceIdProvider.get(), peer.getPhoneNumber(), 60);
     objectSender.send("/createSession", session);
   }
 
-  public void requestSession(String inviteToken, String inviterPhoneNumber) {
-    Peer peer = db.getPeerByPhoneNumber(inviterPhoneNumber);
-    if (peer == null) {
-      String displayName = displayNameResolver.getDisplayName(inviterPhoneNumber);
-      peer = db.putPeer(new Peer(displayName, inviterPhoneNumber));
-    }
-    PeeringSession session =
-        PeeringSession.fromToken(inviteToken, inviterPhoneNumber, peer.getId(), deviceIdProvider.get());
-    objectSender.send("/requestSession", session);
+  public void requestSession(String inviteToken) {
+    InviteReply inviteReply = new InviteReply(inviteToken, deviceIdProvider.get());
+    objectSender.send("/requestSession", inviteReply);
   }
 
-  public void askWhetherToAllowSession(PeeringSession session) {
-    userInteraction.askWhetherToAllowSession(session);
+  public void askWhetherToAllowSession(PeeringSession session, boolean isInviter) {
+    userInteraction.askWhetherToAllowSession(session, isInviter);
   }
 
   public void handleSessionConfirmation(PeeringSession session, boolean approved) {
     String decision = approved ? "accepted" : "denied";
-    Peer peer = db.getPeer(session.getInviterPeerId());
-    peer.setUserId(session.getInviteeId());
-    peer.setPhoneNumber(session.getInviteePhoneNumber());
-    db.putPeer(peer);
-    userInteraction.showNotification(peer.getDisplayName() + " " + decision + " your request to exchange locations");
+    userInteraction.showNotification(session.getInviteeName() + " " + decision + " your request to exchange locations");
     if (approved) {
       // TODO: make expiration configurable. Use 1 hour for now.
       locationPublisher.start();

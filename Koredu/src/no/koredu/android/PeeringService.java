@@ -1,7 +1,7 @@
 package no.koredu.android;
 
-import android.content.Context;
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
@@ -46,8 +46,7 @@ public class PeeringService extends IntentService {
     if (ACTION_INVITE.equals(action)) {
       peeringClient.sendInvite(intent.getIntExtra(MainActivity.EXTRA_PEER_ID, -1));
     } else if (ACTION_REQUEST_SESSION.equals(action)) {
-      peeringClient.requestSession(intent.getStringExtra(MainActivity.EXTRA_INVITE_TOKEN),
-          intent.getStringExtra(MainActivity.EXTRA_PHONE_NUMBER));
+      peeringClient.requestSession(intent.getStringExtra(MainActivity.EXTRA_INVITE_TOKEN));
     }
   }
 

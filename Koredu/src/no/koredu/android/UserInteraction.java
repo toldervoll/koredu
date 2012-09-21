@@ -14,21 +14,18 @@ import no.koredu.common.PeeringSession;
 public class UserInteraction {
 
   private final Context context;
-  private final DisplayNameResolver displayNameResolver;
 
 
   public UserInteraction(Context context, DisplayNameResolver displayNameResolver) {
     this.context = context;
-    this.displayNameResolver = displayNameResolver;
   }
 
-  public void askWhetherToAllowSession(PeeringSession session) {
+  public void askWhetherToAllowSession(PeeringSession session, boolean isInviter) {
     String ns = Context.NOTIFICATION_SERVICE;
     NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
     int icon = R.drawable.ic_launcher;
 
-    // TODO: displayName from App Engine user?
-    String displayName = displayNameResolver.getDisplayName(session.getInviterPhoneNumber());
+    String displayName = isInviter ? session.getInviteeName() : session.getInviterName();
 
     Intent notificationIntent = new Intent(context, MainActivity.class);
     notificationIntent

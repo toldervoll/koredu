@@ -2,9 +2,9 @@ package no.koredu.testing;
 
 import com.google.appengine.api.users.User;
 import no.koredu.android.ObjectSender;
+import no.koredu.common.InviteReply;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.UserLocation;
-import no.koredu.common.Verification;
 import no.koredu.server.KoreduApi;
 
 /**
@@ -33,17 +33,13 @@ public class DirectObjectSender implements ObjectSender {
     if ("/createSession".equals(path)) {
       koreduApi.createSession((PeeringSession) object, user);
     } else if ("/requestSession".equals(path)) {
-      koreduApi.requestSession((PeeringSession) object, user);
+      koreduApi.requestSession((InviteReply) object, user);
     } else if ("/approveSession".equals(path)) {
       koreduApi.approveSession(Long.parseLong((String) object), true, user);
     } else if ("/denySession".equals(path)) {
       koreduApi.approveSession(Long.parseLong((String) object), false, user);
     } else if ("/publishLocation".equals(path)) {
       koreduApi.publishLocation((UserLocation) object, user);
-    } else if ("/reportPhoneNumber".equals(path)) {
-      koreduApi.reportPhoneNumber((Verification) object, user);
-    } else if ("/reportVerified".equals(path)) {
-      koreduApi.reportVerifiedPhoneNumber((Verification) object, user);
     } else {
       throw new IllegalArgumentException("unknown path " + path);
     }

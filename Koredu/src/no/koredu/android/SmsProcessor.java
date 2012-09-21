@@ -26,7 +26,7 @@ public class SmsProcessor {
       } else if (parseResult.isVerificationRequest()) {
         phoneNumberVerifier.reportPhoneNumber(parseResult.getToken(), phoneNumber);
       } else {
-        peeringClient.requestSession(parseResult.getToken(), phoneNumber);
+        peeringClient.requestSession(parseResult.getToken());
       }
     }
   }

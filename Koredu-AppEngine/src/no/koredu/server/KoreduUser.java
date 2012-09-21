@@ -7,8 +7,7 @@ public class KoreduUser {
   @Id
   private Long id;
   private String gaiaId;
-  private String displayName;
-  private String phoneNumber;
+  private String name;
   private String deviceId;
   private long registrationTime;
 
@@ -16,7 +15,7 @@ public class KoreduUser {
     // needed for Objectify
   }
 
-  public KoreduUser(String deviceId) {
+  public KoreduUser(String gaiaId, String name, String deviceId) {
     this.deviceId = deviceId;
     registrationTime = System.currentTimeMillis();
   }
@@ -29,21 +28,15 @@ public class KoreduUser {
     return gaiaId;
   }
 
-  public String getDisplayName() {
-    return displayName;
-  }
-
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public String getName() {
+    return name;
   }
 
   public String getDeviceId() {
     return deviceId;
   }
 
-
+  public long getRegistrationTime() {
+    return registrationTime;
+  }
 }

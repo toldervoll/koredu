@@ -34,25 +34,29 @@ public class DirectObjectPusher implements ObjectPusher {
   }
 
   @Override
-  public void pushSmsCommand(String phoneNumber, String smsMessage, String deviceId) {
-    tracker.track("server", "SEND_SMS", deviceId);
-    smsSenders.get(deviceId).send(phoneNumber, smsMessage);
+  public void pushSmsCommand(String phoneNumber, String smsMessage, String... deviceIds) {
+    for (String deviceId : deviceIds) {
+      tracker.track("server", "SEND_SMS", deviceId);
+      smsSenders.get(deviceId).send(phoneNumber, smsMessage);
+    }
   }
 
   @Override
-  public <T> void pushObject(String action, T object, String deviceId) {
-    tracker.track("server", action, deviceId);
-    PeeringClient peeringClient = peeringsClients.get(deviceId);
-    if ("CONFIRM_SESSION".equals(action)) {
-      peeringClient.askWhetherToAllowSession((PeeringSession) object);
-    } else if ("VERIFY".equals(action)) {
-      peeringClient.verifyPhoneNumber((Verification) object);
-    } else if ("SESSION_CONFIRMED".equals(action)) {
-      peeringClient.handleSessionConfirmation((PeeringSession) object, true);
-    } else if ("SESSION_DENIED".equals(action)) {
-      peeringClient.handleSessionConfirmation((PeeringSession) object, false);
-    } else if ("LOCATION_UPDATE".equals(action)) {
-      peeringClient.receivePeerLocation((UserLocation) object);
+  public <T> void pushObject(String action, T object, String... deviceIds) {
+    for (String deviceId : deviceIds) {
+      tracker.track("server", action, deviceId);
+      PeeringClient peeringClient = peeringsClients.get(deviceId);
+      if ("CONFIRM_SESSION".equals(action)) {
+        peeringClient.askWhetherToAllowSession((PeeringSession) object, false);
+      } else if ("VERIFY".equals(action)) {
+        peeringClient.verifyPhoneNumber((Verification) object);
+      } else if ("SESSION_CONFIRMED".equals(action)) {
+        peeringClient.handleSessionConfirmation((PeeringSession) object, true);
+      } else if ("SESSION_DENIED".equals(action)) {
+        peeringClient.handleSessionConfirmation((PeeringSession) object, false);
+      } else if ("LOCATION_UPDATE".equals(action)) {
+        peeringClient.receivePeerLocation((UserLocation) object);
+      }
     }
   }
 

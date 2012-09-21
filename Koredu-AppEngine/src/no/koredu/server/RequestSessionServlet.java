@@ -1,6 +1,6 @@
 package no.koredu.server;
 
-import no.koredu.common.PeeringSession;
+import no.koredu.common.InviteReply;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +12,8 @@ public class RequestSessionServlet extends KoreduServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    PeeringSession session = getPostData(request, PeeringSession.class);
-    koreduApi.requestSession(session, getUser());
+    InviteReply inviteReply = getPostData(request, InviteReply.class);
+    koreduApi.requestSession(inviteReply, getUser());
     writeTextResponse(response, "OK");
   }
 

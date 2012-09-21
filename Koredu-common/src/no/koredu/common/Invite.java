@@ -9,7 +9,7 @@ public class Invite {
 
   @Id
   private Long id;
-  private String inviteToken;
+  private String token;
   private String phoneNumber;
   private Long sessionId;
 
@@ -17,8 +17,7 @@ public class Invite {
     // needed for Objectify
   }
 
-  public Invite(String inviteToken, String phoneNumber, Long sessionId) {
-    this.inviteToken = inviteToken;
+  public Invite(String phoneNumber, Long sessionId) {
     this.phoneNumber = phoneNumber;
     this.sessionId = sessionId;
   }
@@ -27,8 +26,12 @@ public class Invite {
     return id;
   }
 
-  public String getInviteToken() {
-    return inviteToken;
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 
   public String getPhoneNumber() {
@@ -37,5 +40,15 @@ public class Invite {
 
   public Long getSessionId() {
     return sessionId;
+  }
+
+  @Override
+  public String toString() {
+    return "Invite{" +
+        "id=" + id +
+        ", token='" + token + '\'' +
+        ", phoneNumber='" + phoneNumber + '\'' +
+        ", sessionId=" + sessionId +
+        '}';
   }
 }

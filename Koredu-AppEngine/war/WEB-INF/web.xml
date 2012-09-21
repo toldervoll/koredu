@@ -27,14 +27,6 @@
     <servlet-class>no.koredu.server.DenySessionServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>ReportPhoneNumberServlet</servlet-name>
-    <servlet-class>no.koredu.server.ReportPhoneNumberServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>ReportVerifiedServlet</servlet-name>
-    <servlet-class>no.koredu.server.ReportVerifiedServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>PublishLocationServlet</servlet-name>
     <servlet-class>no.koredu.server.PublishLocationServlet</servlet-class>
   </servlet>
@@ -57,14 +49,6 @@
   <servlet-mapping>
     <servlet-name>DenySessionServlet</servlet-name>
     <url-pattern>/denySession</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ReportPhoneNumberServlet</servlet-name>
-    <url-pattern>/reportPhoneNumber</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ReportVerifiedServlet</servlet-name>
-    <url-pattern>/reportVerified</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>PublishLocationServlet</servlet-name>
