@@ -33,30 +33,20 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Koredu" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80f7ff7c-b78a-4fc1-b7d1-5be97475ba36" name="Default" comment="Simplified peering by always requiring an SMS to initiate a session. Removed phone number verification code. Still needs cleanup, on the client side especially.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/InviteReply.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ReportPhoneNumberServlet.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ReportVerifiedServlet.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/SendSessionServlet.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java" />
+    <list default="true" id="80f7ff7c-b78a-4fc1-b7d1-5be97475ba36" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/no/koredu/android/EmulatorSmsSender.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/RegisterDeviceServlet.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/Koredu-AppEngine.iml" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/Koredu-AppEngine.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduUser.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/RequestSessionServlet.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/RequestSessionServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/Koredu-common.iml" afterPath="$PROJECT_DIR$/../Koredu-common/Koredu-common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Invite.java" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Invite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/FakeDeviceIdProvider.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/FakeDeviceIdProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/DeviceIdProvider.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/DeviceIdProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/GCMDeviceIdProvider.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/GCMDeviceIdProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/HttpService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/HttpService.java" />
     </list>
     <ignored path="Koredu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,7 +68,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" line="15" class="no.koredu.server.CreateSessionServlet" package="no.koredu.server">
+      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" line="23" class="no.koredu.server.CreateSessionServlet" package="no.koredu.server">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -91,7 +81,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java" line="85" class="no.koredu.android.HttpService" package="no.koredu.android">
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java" line="86" class="no.koredu.android.HttpService" package="no.koredu.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -117,7 +107,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" line="37" class="no.koredu.android.GCMIntentService" package="no.koredu.android">
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" line="39" class="no.koredu.android.GCMIntentService" package="no.koredu.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -195,20 +185,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" line="50" class="no.koredu.server.KoreduApi" package="no.koredu.server">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/TokenFactory.java" line="14" class="no.koredu.server.TokenFactory" package="no.koredu.server">
+      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" line="40" class="no.koredu.server.KoreduApi" package="no.koredu.server">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -234,7 +211,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java" line="62" class="no.koredu.android.HttpService" package="no.koredu.android">
+      <breakpoint url="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" line="111" class="no.koredu.common.PeeringTest" package="no.koredu.common">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -247,7 +224,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java" line="31" class="no.koredu.android.auth.AndroidAccountProvider" package="no.koredu.android.auth">
+      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" line="28" class="no.koredu.server.KoreduApi" package="no.koredu.server">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -260,7 +237,33 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/GCMDeviceIdProvider.java" line="70" class="no.koredu.android.GCMDeviceIdProvider" package="no.koredu.android">
+      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" line="36" class="no.koredu.server.KoreduApi" package="no.koredu.server">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="38" class="no.koredu.android.PeeringClient" package="no.koredu.android">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java" line="79" class="no.koredu.android.auth.AndroidAccountProvider" package="no.koredu.android.auth">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -286,33 +289,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java" line="92" class="no.koredu.android.auth.AndroidAccountProvider" package="no.koredu.android.auth">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java" line="82" class="no.koredu.android.auth.AndroidAccountProvider" package="no.koredu.android.auth">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" line="111" class="no.koredu.common.PeeringTest" package="no.koredu.common">
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java" line="31" class="no.koredu.android.auth.AndroidAccountProvider" package="no.koredu.android.auth">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -366,71 +343,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PeeringTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="358" column="0" selection-start="16979" selection-end="16979" vertical-scroll-proportion="1.3470483">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3931#3947#0" expanded="true" />
-                <element signature="e#4006#4014#0" expanded="true" />
-                <element signature="e#4063#4069#0" expanded="true" />
-                <element signature="e#5896#5912#0" expanded="true" />
-                <element signature="e#5971#5979#0" expanded="true" />
-                <element signature="e#6028#6034#0" expanded="true" />
-                <element signature="e#8216#8232#0" expanded="true" />
-                <element signature="e#8291#8299#0" expanded="true" />
-                <element signature="e#8348#8354#0" expanded="true" />
-                <element signature="e#8419#8433#0" expanded="true" />
-                <element signature="e#11206#11222#0" expanded="true" />
-                <element signature="e#11281#11289#0" expanded="true" />
-                <element signature="e#11338#11344#0" expanded="true" />
-                <element signature="e#11409#11423#0" expanded="true" />
-                <element signature="e#14070#14086#0" expanded="true" />
-                <element signature="e#14145#14153#0" expanded="true" />
-                <element signature="e#14202#14208#0" expanded="true" />
-                <element signature="e#14273#14287#0" expanded="true" />
-                <element signature="e#14353#14367#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DAO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="62" selection-start="2179" selection-end="2179" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="KoreduApi.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="98" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserInteraction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
+            <state line="14" column="0" selection-start="319" selection-end="400" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SmsProcessor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java">
+      <file leaf-file-name="AndroidAccountProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="59" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
+            <state line="82" column="0" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -439,21 +364,8 @@
       <file leaf-file-name="PeeringService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="89" selection-start="1748" selection-end="1748" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectObjectSender.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="43" selection-start="1092" selection-end="1092" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state line="44" column="0" selection-start="1418" selection-end="1418" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -461,28 +373,62 @@
       <file leaf-file-name="PeeringClient.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="28" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.0">
+            <state line="42" column="0" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GCMIntentService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="41" selection-start="1550" selection-end="1550" vertical-scroll-proportion="0.0">
+            <state line="58" column="0" selection-start="2320" selection-end="2320" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PeeringSession.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java">
+      <file leaf-file-name="CreateSessionServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="16" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="18" column="23" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="0" selection-start="3141" selection-end="3141" vertical-scroll-proportion="0.8908766">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestSessionServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/RequestSessionServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="13" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FakeDeviceIdProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/FakeDeviceIdProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="32" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -500,22 +446,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Invite.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java" />
-        <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/SendSessionServlet.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java" />
-        <option value="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" />
         <option value="$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" />
         <option value="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" />
         <option value="$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java" />
         <option value="$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" />
         <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" />
         <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" />
         <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/GCMDeviceIdProvider.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/DeviceIdProvider.java" />
+        <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/FakeDeviceIdProvider.java" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/HttpService.java" />
       </list>
     </option>
   </component>
@@ -586,6 +532,16 @@
             <PATH_ELEMENT USER_OBJECT="Root">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Koredu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -830,16 +786,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Koredu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -878,7 +824,7 @@
       <recent name="no.koredu.common" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PeeringTest">
+  <component name="RunManager" selected="Android Application.phone">
     <configuration default="false" name="PeeringTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="Koredu-test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1268,16 +1214,16 @@
       <method />
     </configuration>
     <list size="10">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.emulator 4.0" />
-      <item index="1" class="java.lang.String" itemvalue="Android Application.phone" />
-      <item index="2" class="java.lang.String" itemvalue="Android Application.emulator 2.2" />
-      <item index="3" class="java.lang.String" itemvalue="Google AppEngine Dev Server.AppEngine Dev" />
-      <item index="4" class="java.lang.String" itemvalue="Remote.localhost:5005" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.PeeringTest" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteKnownInviterUnknownInvitee" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteKnownInviterNewInvitee" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteUnknownInviterKnown" />
-      <item index="9" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteBothUnknown" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.PeeringTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteKnownInviterUnknownInvitee" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteKnownInviterNewInvitee" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteUnknownInviterKnown" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.PeeringTest.testInviteBothUnknown" />
+      <item index="5" class="java.lang.String" itemvalue="Android Application.emulator 4.0" />
+      <item index="6" class="java.lang.String" itemvalue="Android Application.phone" />
+      <item index="7" class="java.lang.String" itemvalue="Android Application.emulator 2.2" />
+      <item index="8" class="java.lang.String" itemvalue="Google AppEngine Dev Server.AppEngine Dev" />
+      <item index="9" class="java.lang.String" itemvalue="Remote.localhost:5005" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1332,32 +1278,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1676" height="1028" extended-state="0" />
+    <frame x="4" y="22" width="1676" height="1028" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.60088205" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.497543" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39911798" sideWeight="0.6775184" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5055283" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296582" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39911798" sideWeight="0.6744472" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.28194103" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985258" sideWeight="0.6703418" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296582" sideWeight="0.43611795" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.7174447" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.71375924" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938574" sideWeight="0.6703418" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.490172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938574" sideWeight="0.6703418" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.93488944" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923833" sideWeight="0.60088205" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.48771498" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.43366092" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Android Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1424,146 +1370,96 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduUser.java">
+    <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Invite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="16" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="44" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="21" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/RequestSessionServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="19" column="9" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="16" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="72" column="0" selection-start="1461" selection-end="1461" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java">
+    <entry file="jar://$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/lib/appengine-api-1.0-sdk-1.7.1.jar!/com/google/apphosting/utils/servlet/TransactionCleanupFilter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="41" selection-start="1550" selection-end="1550" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="13" column="14" selection-start="535" selection-end="535" vertical-scroll-proportion="-7.2" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java">
+    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="28" selection-start="1997" selection-end="1997" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java">
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/GCMDeviceIdProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="13" column="54" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java">
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/DeviceIdProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="59" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="89" selection-start="1748" selection-end="1748" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="43" selection-start="1092" selection-end="1092" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="62" selection-start="2179" selection-end="2179" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="7" column="0" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="98" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="14" column="0" selection-start="319" selection-end="400" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java">
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="358" column="0" selection-start="16979" selection-end="16979" vertical-scroll-proportion="1.3470483">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3931#3947#0" expanded="true" />
-            <element signature="e#4006#4014#0" expanded="true" />
-            <element signature="e#4063#4069#0" expanded="true" />
-            <element signature="e#5896#5912#0" expanded="true" />
-            <element signature="e#5971#5979#0" expanded="true" />
-            <element signature="e#6028#6034#0" expanded="true" />
-            <element signature="e#8216#8232#0" expanded="true" />
-            <element signature="e#8291#8299#0" expanded="true" />
-            <element signature="e#8348#8354#0" expanded="true" />
-            <element signature="e#8419#8433#0" expanded="true" />
-            <element signature="e#11206#11222#0" expanded="true" />
-            <element signature="e#11281#11289#0" expanded="true" />
-            <element signature="e#11338#11344#0" expanded="true" />
-            <element signature="e#11409#11423#0" expanded="true" />
-            <element signature="e#14070#14086#0" expanded="true" />
-            <element signature="e#14145#14153#0" expanded="true" />
-            <element signature="e#14202#14208#0" expanded="true" />
-            <element signature="e#14273#14287#0" expanded="true" />
-            <element signature="e#14353#14367#0" expanded="true" />
-          </folding>
+        <state line="82" column="0" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1418" selection-end="1418" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="0" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="0" selection-start="2320" selection-end="2320" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="23" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/RequestSessionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/war/WEB-INF/web.xml">
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/FakeDeviceIdProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="32" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="0" selection-start="3141" selection-end="3141" vertical-scroll-proportion="0.8908766">
+          <folding />
         </state>
       </provider>
     </entry>

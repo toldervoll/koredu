@@ -8,8 +8,8 @@ import android.util.Log;
 import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpService extends IntentService {
@@ -62,15 +62,16 @@ public class HttpService extends IntentService {
     // TODO: retry with exponential backoff
     byte[] payloadBytes = data.getBytes(Charsets.UTF_8);
     URL url = null;
-    HttpsURLConnection urlConnection = null;
+    HttpURLConnection urlConnection = null;
     try {
       url = new URL(getBaseUrl() + path);
-      urlConnection = (HttpsURLConnection) url.openConnection();
+      urlConnection = (HttpURLConnection) url.openConnection();
       urlConnection.setDoOutput(true);
       urlConnection.setFixedLengthStreamingMode(payloadBytes.length);
       urlConnection.setRequestProperty("Content-Type", "application/json");
       Log.v(TAG, "Getting auth cookie, thread=" + Thread.currentThread().getName());
       String authCookie = accountProvider.getAuthenticationCookie();
+      Log.v(TAG, "Using auth cookie " + authCookie);
       if (authCookie != null) {
         urlConnection.setRequestProperty("Cookie", authCookie);
       }
@@ -85,7 +86,9 @@ public class HttpService extends IntentService {
     } catch (IOException e) {
       throw new RuntimeException("Failed to send payload to " + url, e);
     } finally {
-      urlConnection.disconnect();
+      if (urlConnection != null) {
+        urlConnection.disconnect();
+      }
     }
   }
 

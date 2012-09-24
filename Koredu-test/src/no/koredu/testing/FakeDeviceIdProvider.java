@@ -18,8 +18,4 @@ public class FakeDeviceIdProvider implements DeviceIdProvider {
     return deviceId;
   }
 
-  @Override
-  public void sendRegistration() {
-    // ignored
-  }
 }

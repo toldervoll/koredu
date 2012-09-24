@@ -10,6 +10,7 @@
     <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/known-bugs" />
     <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/roboguice" />
     <file type="android" url="file://$USER_HOME$/Android/libs/JakeWharton-ActionBarSherlock-88fc341/samples/styled" />
+    <type id="jpa" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

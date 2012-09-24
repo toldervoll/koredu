@@ -60,20 +60,7 @@ public class GCMDeviceIdProvider implements DeviceIdProvider {
         }
       }
       deviceId.set(regId);
-      sendRegistration();
       return null;
-    }
-  }
-
-  @Override
-  public void sendRegistration() {
-    try {
-      objectSender.send("/registerDevice", deviceId.get());
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new RuntimeException(e);
-    } catch (ExecutionException e) {
-      throw new RuntimeException(e);
     }
   }
 

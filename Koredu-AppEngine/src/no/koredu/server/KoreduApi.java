@@ -25,20 +25,10 @@ public class KoreduApi {
     this.objectPusher = objectPusher;
   }
 
-  public long registerDevice(String deviceId, com.google.appengine.api.users.User user) {
-    // TODO: get Gaia user, look up User, add deviceId to the user
-    log.info("Gaia user is " + user);
-    if (user != null) {
-      log.info("Gaia nickname=" + user.getNickname());
-    }
-    KoreduUser koreduUser = dao.getOrCreateUser(user.getUserId(), user.getNickname(), deviceId);
-    return koreduUser.getId();
-  }
-
   public void createSession(PeeringSession session, User user) {
-    log.info("createSession called");
+    log.info("createSession called with user=" + user + ", session=" + session);
     PeeringSession storedSession = dao.createSession(session, user.getUserId(), user.getNickname());
-    Invite invite = new Invite(session.getInviteePhoneNumber(), storedSession.getId());
+    Invite invite = new Invite(storedSession.getInviteePhoneNumber(), storedSession.getId());
     Invite storedInvite = dao.putInvite(invite);
     String token = storedInvite.getToken();
     log.info("createSession got token " + token);
@@ -64,7 +54,7 @@ public class KoreduApi {
             return storedSession;
           }
         });
-    objectPusher.pushObject("CONFIRM_SESSION", session, inviteReply.getInviteeDeviceId());
+    objectPusher.pushObject("CONFIRM_SESSION_AS_INVITEE", session, inviteReply.getInviteeDeviceId());
   }
 
   public void approveSession(long sessionId, boolean approved, User user) {
@@ -73,7 +63,7 @@ public class KoreduApi {
     if (invitee.getGaiaId().equals(user.getUserId())) {
       // this is the invitee approving the invitation - ask inviter to confirm
       if (approved) {
-        objectPusher.pushObject("CONFIRM_SESSION", session, session.getInviterDeviceId());
+        objectPusher.pushObject("CONFIRM_SESSION_AS_INVITER", session, session.getInviterDeviceId());
       } else {
         objectPusher.pushObject("SESSION_DENIED", session, session.getInviterDeviceId());
       }
