@@ -4,6 +4,7 @@ import com.google.appengine.repackaged.com.google.common.collect.Maps;
 import no.koredu.android.PeeringClient;
 import no.koredu.android.SmsSender;
 import no.koredu.common.PeeringSession;
+import no.koredu.common.Sanitizable;
 import no.koredu.common.UserLocation;
 import no.koredu.common.Verification;
 import no.koredu.server.ObjectPusher;
@@ -42,12 +43,12 @@ public class DirectObjectPusher implements ObjectPusher {
   }
 
   @Override
-  public <T> void pushObject(String action, T object, String... deviceIds) {
+  public void pushObject(String action, Sanitizable object, String... deviceIds) {
     for (String deviceId : deviceIds) {
       tracker.track("server", action, deviceId);
       PeeringClient peeringClient = peeringsClients.get(deviceId);
       if ("CONFIRM_SESSION".equals(action)) {
-        peeringClient.askWhetherToAllowSession((PeeringSession) object, false);
+        peeringClient.askWhetherToAllowSession((PeeringSession) object);
       } else if ("VERIFY".equals(action)) {
         peeringClient.verifyPhoneNumber((Verification) object);
       } else if ("SESSION_CONFIRMED".equals(action)) {

@@ -1,15 +1,12 @@
 package no.koredu.common;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Id;
 
-public class PeeringSession {
+public class PeeringSession implements Sanitizable {
 
   public enum State {
     CREATED,
     REQUESTED,
-    APPROVED_BY_INVITEE,
     APPROVED,
     DENIED,
     EXPIRED
@@ -20,11 +17,12 @@ public class PeeringSession {
 
   private Long inviterId;
   private String inviterName;
+  private String inviterPhoneNumber;
   private String inviterDeviceId;
 
-  private String inviteePhoneNumber;
   private Long inviteeId;
   private String inviteeName;
+  private String inviteePhoneNumber;
   private String inviteeDeviceId;
 
   private int durationMinutes;
@@ -33,7 +31,7 @@ public class PeeringSession {
   private State state;
 
   PeeringSession() {
-    // needed for Objectify
+    // needed for Objectify and Jackson
   }
 
   // Constructor used by the client
@@ -64,13 +62,16 @@ public class PeeringSession {
     this.inviterName = inviterName;
   }
 
-  @JsonIgnore
-  public String getInviterDeviceId() {
-    return inviterDeviceId;
+  public String getInviterPhoneNumber() {
+    return inviterPhoneNumber;
   }
 
-  public String getInviteePhoneNumber() {
-    return inviteePhoneNumber;
+  public void setInviterPhoneNumber(String inviterPhoneNumber) {
+    this.inviterPhoneNumber = inviterPhoneNumber;
+  }
+
+  public String getInviterDeviceId() {
+    return inviterDeviceId;
   }
 
   public Long getInviteeId() {
@@ -89,7 +90,10 @@ public class PeeringSession {
     this.inviteeName = inviteeName;
   }
 
-  @JsonIgnore
+  public String getInviteePhoneNumber() {
+    return inviteePhoneNumber;
+  }
+
   public String getInviteeDeviceId() {
     return inviteeDeviceId;
   }
@@ -131,15 +135,22 @@ public class PeeringSession {
   }
 
   @Override
+  public void sanitize() {
+    inviterDeviceId = null;
+    inviteeDeviceId = null;
+  }
+
+  @Override
   public String toString() {
     return "PeeringSession{" +
         "id=" + id +
         ", inviterId=" + inviterId +
         ", inviterName='" + inviterName + '\'' +
+        ", inviterPhoneNumber='" + inviterPhoneNumber + '\'' +
         ", inviterDeviceId='" + inviterDeviceId + '\'' +
-        ", inviteePhoneNumber='" + inviteePhoneNumber + '\'' +
         ", inviteeId=" + inviteeId +
         ", inviteeName='" + inviteeName + '\'' +
+        ", inviteePhoneNumber='" + inviteePhoneNumber + '\'' +
         ", inviteeDeviceId='" + inviteeDeviceId + '\'' +
         ", durationMinutes=" + durationMinutes +
         ", inviteTime=" + inviteTime +

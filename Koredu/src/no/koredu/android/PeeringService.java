@@ -46,7 +46,9 @@ public class PeeringService extends IntentService {
     if (ACTION_INVITE.equals(action)) {
       peeringClient.sendInvite(intent.getIntExtra(MainActivity.EXTRA_PEER_ID, -1));
     } else if (ACTION_REQUEST_SESSION.equals(action)) {
-      peeringClient.requestSession(intent.getStringExtra(MainActivity.EXTRA_INVITE_TOKEN));
+      peeringClient.requestSession(
+          intent.getStringExtra(MainActivity.EXTRA_INVITE_TOKEN),
+          intent.getStringExtra(MainActivity.EXTRA_PHONE_NUMBER));
     }
   }
 

@@ -14,18 +14,21 @@ import no.koredu.common.PeeringSession;
 public class UserInteraction {
 
   private final Context context;
+  private final DisplayNameResolver displayNameResolver;
 
 
   public UserInteraction(Context context, DisplayNameResolver displayNameResolver) {
     this.context = context;
+    this.displayNameResolver = displayNameResolver;
   }
 
-  public void askWhetherToAllowSession(PeeringSession session, boolean isInviter) {
+  public void askWhetherToAllowSession(PeeringSession session) {
     String ns = Context.NOTIFICATION_SERVICE;
     NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
     int icon = R.drawable.ic_launcher;
 
-    String displayName = isInviter ? session.getInviteeName() : session.getInviterName();
+    // TODO: displayName from Google Profile?
+    String displayName = displayNameResolver.getDisplayName(session.getInviterPhoneNumber());
 
     Intent notificationIntent = new Intent(context, MainActivity.class);
     notificationIntent
@@ -47,7 +50,10 @@ public class UserInteraction {
     mNotificationManager.notify(0, notification);
   }
 
-  public void showNotification(String message) {
+  public void showSessionConformation(PeeringSession session, boolean approved) {
+    String decision = approved ? "accepted" : "denied";
+    String displayName = displayNameResolver.getDisplayName(session.getInviterPhoneNumber());
+    String message = displayName + " " + decision + " your request to exchange locations";
     NotificationManager mNotificationManager =
         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     int icon = R.drawable.ic_launcher;

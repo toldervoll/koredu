@@ -1,10 +1,12 @@
 package no.koredu.server;
 
+import no.koredu.common.Sanitizable;
+
 /**
  * @author thomas@zenior.no (Thomas Oldervoll)
  */
 public interface ObjectPusher {
   void pushSmsCommand(String phoneNumber, String smsMessage, String... deviceId);
 
-  <T> void pushObject(String action, T object, String... deviceId);
+  void pushObject(String action, Sanitizable object, String... deviceId);
 }

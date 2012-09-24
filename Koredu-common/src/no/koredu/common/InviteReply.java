@@ -5,16 +5,26 @@ package no.koredu.common;
  */
 public class InviteReply {
 
-  private final String token;
-  private final String inviteeDeviceId;
+  private String token;
+  private String inviterPhoneNumber;
+  private String inviteeDeviceId;
 
-  public InviteReply(String token, String inviteeDeviceId) {
+  InviteReply() {
+    // needed for Jackson
+  }
+
+  public InviteReply(String token, String inviterPhoneNumber, String inviteeDeviceId) {
     this.token = token;
+    this.inviterPhoneNumber = inviterPhoneNumber;
     this.inviteeDeviceId = inviteeDeviceId;
   }
 
   public String getToken() {
     return token;
+  }
+
+  public String getInviterPhoneNumber() {
+    return inviterPhoneNumber;
   }
 
   public String getInviteeDeviceId() {
@@ -25,6 +35,7 @@ public class InviteReply {
   public String toString() {
     return "InviteReply{" +
         "token='" + token + '\'' +
+        ", inviterPhoneNumber='" + inviterPhoneNumber + '\'' +
         ", inviteeDeviceId='" + inviteeDeviceId + '\'' +
         '}';
   }

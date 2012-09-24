@@ -26,6 +26,7 @@ public class DAO extends DAOBase {
   }
 
   static {
+    ObjectifyService.register(Invite.class);
     ObjectifyService.register(KoreduUser.class);
     ObjectifyService.register(PeeringSession.class);
     ObjectifyService.register(PhoneNumberVerification.class);
@@ -36,19 +37,18 @@ public class DAO extends DAOBase {
     return ofy().find(KoreduUser.class, userId);
   }
 
-  public KoreduUser getUser(String gaiaId, String deviceId) {
+  public KoreduUser getUser(String deviceId) {
     return ofy().query(KoreduUser.class)
-        .filter("gaiaId", gaiaId)
         .filter("deviceId", deviceId)
         .get();
   }
 
-  public KoreduUser getOrCreateUser(String gaiaId, String displayName, String deviceId) {
+  public KoreduUser getOrCreateUser(String deviceId) {
     Objectify ofy = ObjectifyService.beginTransaction();
     try {
-      KoreduUser user = getUser(gaiaId, deviceId);
+      KoreduUser user = getUser(deviceId);
       if (user == null) {
-        user = new KoreduUser(gaiaId, displayName, deviceId);
+        user = new KoreduUser(deviceId);
         ofy.put(user);
       } else {
         log.info("using existing user " + user.getId());
@@ -67,9 +67,9 @@ public class DAO extends DAOBase {
     }
   }
 
-  public PeeringSession createSession(final PeeringSession session, String gaiaId, String displayName) {
+  public PeeringSession createSession(final PeeringSession session) {
     log.info("Saving session " + session);
-    KoreduUser inviter = getOrCreateUser(gaiaId, displayName, session.getInviterDeviceId());
+    KoreduUser inviter = getOrCreateUser(session.getInviterDeviceId());
     session.setInviterId(inviter.getId());
     session.setState(PeeringSession.State.CREATED);
     ofy().put(session);

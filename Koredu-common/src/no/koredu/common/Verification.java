@@ -9,14 +9,17 @@ public class Verification {
   @DatabaseField(id = true)
   private String id;
 
-  @DatabaseField private Integer peerId;
-  @DatabaseField private String phoneNumber;
-  @DatabaseField private String deviceId;
+  @DatabaseField
+  private Integer peerId;
+  @DatabaseField
+  private String phoneNumber;
+  @DatabaseField
+  private String deviceId;
 
   Verification() {
-    // needed by ORMLite
+    // needed by ORMLite and Jackson
   }
-  
+
   public Verification(String token, Integer peerId) {
     this.id = token;
     this.peerId = peerId;

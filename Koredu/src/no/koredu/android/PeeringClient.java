@@ -43,18 +43,17 @@ public class PeeringClient {
     objectSender.send("/createSession", session);
   }
 
-  public void requestSession(String inviteToken) {
-    InviteReply inviteReply = new InviteReply(inviteToken, deviceIdProvider.get());
+  public void requestSession(String inviteToken, String phoneNumber) {
+    InviteReply inviteReply = new InviteReply(inviteToken, phoneNumber, deviceIdProvider.get());
     objectSender.send("/requestSession", inviteReply);
   }
 
-  public void askWhetherToAllowSession(PeeringSession session, boolean isInviter) {
-    userInteraction.askWhetherToAllowSession(session, isInviter);
+  public void askWhetherToAllowSession(PeeringSession session) {
+    userInteraction.askWhetherToAllowSession(session);
   }
 
   public void handleSessionConfirmation(PeeringSession session, boolean approved) {
-    String decision = approved ? "accepted" : "denied";
-    userInteraction.showNotification(session.getInviteeName() + " " + decision + " your request to exchange locations");
+    userInteraction.showSessionConformation(session, approved);
     if (approved) {
       // TODO: make expiration configurable. Use 1 hour for now.
       locationPublisher.start();

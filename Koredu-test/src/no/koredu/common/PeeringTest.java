@@ -25,14 +25,10 @@ import static org.junit.Assert.*;
  */
 public class PeeringTest {
 
-  private static final String INVITER_GAIA_ID = "1";
-  private static final String INVITER_NAME = "Thomas Oldervoll";
   private static final String INVITER_DEVICE_ID = "inviter";
   private static final String INVITER_CANONICAL_PHONE_NUMBER = "+4748193450";
   private static final String INVITER_PHONE_NUMBER = "48 19 34 50";
 
-  private static final String INVITEE_GAIA_ID = "2";
-  private static final String INVITEE_NAME = "Ann Oldervoll";
   private static final String INVITEE_DEVICE_ID = "invitee";
   private static final String INVITEE_CANONICAL_PHONE_NUMBER = "+4746938849";
   private static final String INVITEE_PHONE_NUMBER = "469 38 849";
@@ -99,22 +95,22 @@ public class PeeringTest {
       inviterPeer.setId(1);
       inviteePeer = new Peer("Thomas Oldervoll", INVITER_CANONICAL_PHONE_NUMBER); // peer of invitee, i.e. inviter
       inviteePeer.setId(2);
-      koreduApi.getDao().getOrCreateUser(INVITER_GAIA_ID, INVITER_NAME, INVITER_DEVICE_ID);
-      koreduApi.getDao().getOrCreateUser(INVITEE_GAIA_ID, INVITEE_NAME, INVITEE_DEVICE_ID);
+      koreduApi.getDao().getOrCreateUser(INVITER_DEVICE_ID);
+      koreduApi.getDao().getOrCreateUser(INVITEE_DEVICE_ID);
 
       Capture<PeeringSession> sessionCapture = new Capture<PeeringSession>();
-      Capture<String> confirmationCapture = new Capture<String>();
+      Capture<PeeringSession> confirmedSessionCapture = new Capture<PeeringSession>();
       Capture<Peer> peerCapture = new Capture<Peer>();
 
       // inviter creates session
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       // server send CONFIRM_SESSION to invitee
-      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture), false);
+      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture));
       // invitee confirms, server sends SESSION_CONFIRMED to inviter
       // inviter shows confirmation and starts publishing locations
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       expect(inviter.getDb().putPeer(capture(peerCapture))).andReturn(inviterPeer);
-      inviter.getUserInteraction().showNotification(capture(confirmationCapture));
+      inviter.getUserInteraction().showSessionConformation(capture(confirmedSessionCapture), true);
       inviter.getLocationPublisher().start();
       // invitee starts publishing locations
       invitee.getLocationPublisher().start();
@@ -141,11 +137,11 @@ public class PeeringTest {
       inviterPeer.setId(1);
       inviteePeer = new Peer("Thomas Oldervoll", INVITER_CANONICAL_PHONE_NUMBER); // peer of invitee, i.e. inviter
       inviteePeer.setId(2);
-      koreduApi.getDao().getOrCreateUser(INVITER_GAIA_ID, INVITER_NAME, INVITER_DEVICE_ID);
-      koreduApi.getDao().getOrCreateUser(INVITEE_GAIA_ID, INVITEE_NAME, INVITEE_DEVICE_ID);
+      koreduApi.getDao().getOrCreateUser(INVITER_DEVICE_ID);
+      koreduApi.getDao().getOrCreateUser(INVITEE_DEVICE_ID);
 
       Capture<PeeringSession> sessionCapture = new Capture<PeeringSession>();
-      Capture<String> confirmationCapture = new Capture<String>();
+      Capture<PeeringSession> confirmedSessionCapture = new Capture<PeeringSession>();
       Capture<Peer> peerCapture = new Capture<Peer>();
 
       // inviter creates session
@@ -155,12 +151,12 @@ public class PeeringTest {
       // inviter sends SMS to invitee, who looks up the session
       expect(invitee.getDb().getPeerByPhoneNumber(INVITER_CANONICAL_PHONE_NUMBER)).andReturn(inviteePeer);
       // server send CONFIRM_SESSION to invitee
-      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture), false);
+      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture));
       // invitee confirms, server sends SESSION_CONFIRMED to inviter
       // inviter shows confirmation and starts publishing locations
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       expect(inviter.getDb().putPeer(capture(peerCapture))).andReturn(inviterPeer);
-      inviter.getUserInteraction().showNotification(capture(confirmationCapture));
+      inviter.getUserInteraction().showSessionConformation(capture(confirmedSessionCapture), true);
       inviter.getLocationPublisher().start();
       // invitee starts publishing locations
       invitee.getLocationPublisher().start();
@@ -190,10 +186,10 @@ public class PeeringTest {
       inviterPeer.setId(1);
       inviteePeer = new Peer("Thomas Oldervoll", INVITER_CANONICAL_PHONE_NUMBER); // peer of invitee, i.e. inviter
       inviteePeer.setId(2);
-      koreduApi.getDao().getOrCreateUser(INVITER_GAIA_ID, INVITER_NAME, INVITER_DEVICE_ID);
+      koreduApi.getDao().getOrCreateUser(INVITER_DEVICE_ID);
 
       Capture<PeeringSession> sessionCapture = new Capture<PeeringSession>();
-      Capture<String> confirmationCapture = new Capture<String>();
+      Capture<PeeringSession> confirmedSessionCapture = new Capture<PeeringSession>();
       Capture<Peer> peerCapture = new Capture<Peer>();
       Capture<Verification> verificationCapture = new Capture<Verification>();
 
@@ -211,12 +207,12 @@ public class PeeringTest {
       expect(invitee.getDb().getVerification("token2")).andReturn(verificationFromServer);
       expect(invitee.getDb().getPeer(2)).andReturn(inviteePeer);
       // invitee sends /reportVerified, server sends CONFIRM_SESSION to invitee
-      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture), false);
+      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture));
       // invitee confirms, server sends SESSION_CONFIRMED to inviter
       // inviter shows confirmation and starts publishing locations
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       expect(inviter.getDb().putPeer(capture(peerCapture))).andReturn(inviterPeer);
-      inviter.getUserInteraction().showNotification(capture(confirmationCapture));
+      inviter.getUserInteraction().showSessionConformation(capture(confirmedSessionCapture), true);
       inviter.getLocationPublisher().start();
       // invitee starts publishing locations
       invitee.getLocationPublisher().start();
@@ -246,10 +242,10 @@ public class PeeringTest {
       inviterPeer.setId(1);
       inviteePeer = new Peer("Thomas Oldervoll", INVITER_CANONICAL_PHONE_NUMBER); // peer of invitee, i.e. inviter
       inviteePeer.setId(2);
-      koreduApi.getDao().getOrCreateUser(INVITEE_GAIA_ID, INVITEE_NAME, INVITEE_DEVICE_ID);
+      koreduApi.getDao().getOrCreateUser(INVITEE_DEVICE_ID);
 
       Capture<PeeringSession> sessionCapture = new Capture<PeeringSession>();
-      Capture<String> confirmationCapture = new Capture<String>();
+      Capture<PeeringSession> confirmedSessionCapture = new Capture<PeeringSession>();
       Capture<Peer> peerCapture = new Capture<Peer>();
       Capture<Verification> verificationCapture = new Capture<Verification>();
 
@@ -267,12 +263,12 @@ public class PeeringTest {
       expect(inviter.getDb().getVerification("token2")).andReturn(verificationFromServer);
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       // inviter sends /reportVerified, server sends CONFIRM_SESSION to invitee
-      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture), false);
+      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture));
       // invitee confirms, server sends SESSION_CONFIRMED to inviter
       // inviter shows confirmation and starts publishing locations
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       expect(inviter.getDb().putPeer(capture(peerCapture))).andReturn(inviterPeer);
-      inviter.getUserInteraction().showNotification(capture(confirmationCapture));
+      inviter.getUserInteraction().showSessionConformation(capture(confirmedSessionCapture), true);
       inviter.getLocationPublisher().start();
       // invitee starts publishing locations
       invitee.getLocationPublisher().start();
@@ -304,7 +300,7 @@ public class PeeringTest {
       inviteePeer.setId(2);
 
       Capture<PeeringSession> sessionCapture = new Capture<PeeringSession>();
-      Capture<String> confirmationCapture = new Capture<String>();
+      Capture<PeeringSession> confirmedSessionCapture = new Capture<PeeringSession>();
       Capture<Peer> peerCapture = new Capture<Peer>();
       Capture<Verification> verificationCapture = new Capture<Verification>();
       Capture<Verification> verificationCapture2 = new Capture<Verification>();
@@ -330,11 +326,11 @@ public class PeeringTest {
       expect(invitee.getDb().getVerification("token3")).andReturn(verificationFromServer);
       expect(invitee.getDb().getPeer(1)).andReturn(inviteePeer);
       // invitee sends /reportVerified, server sends CONFIRM_SESSION to invitee
-      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture), false);
+      invitee.getUserInteraction().askWhetherToAllowSession(capture(sessionCapture));
       // inviter shows confirmation and starts publishing locations
       expect(inviter.getDb().getPeer(1)).andReturn(inviterPeer);
       expect(inviter.getDb().putPeer(capture(peerCapture))).andReturn(inviterPeer);
-      inviter.getUserInteraction().showNotification(capture(confirmationCapture));
+      inviter.getUserInteraction().showSessionConformation(capture(confirmedSessionCapture), true);
       inviter.getLocationPublisher().start();
       // invitee starts publishing locations
       invitee.getLocationPublisher().start();

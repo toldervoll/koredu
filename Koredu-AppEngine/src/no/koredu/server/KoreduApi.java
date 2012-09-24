@@ -26,8 +26,8 @@ public class KoreduApi {
   }
 
   public void createSession(PeeringSession session, User user) {
-    log.info("createSession called with user=" + user + ", session=" + session);
-    PeeringSession storedSession = dao.createSession(session, user.getUserId(), user.getNickname());
+    //log.info("createSession called with user=" + user + ", session=" + session);
+    PeeringSession storedSession = dao.createSession(session);
     Invite invite = new Invite(storedSession.getInviteePhoneNumber(), storedSession.getId());
     Invite storedInvite = dao.putInvite(invite);
     String token = storedInvite.getToken();
@@ -43,48 +43,42 @@ public class KoreduApi {
     if (invite == null) {
       throw new RuntimeException("No invite found for " + inviteReply);
     }
-    final KoreduUser invitee = dao.getUser(user.getUserId(), inviteReply.getInviteeDeviceId());
+    final KoreduUser invitee = dao.getUser(inviteReply.getInviteeDeviceId());
     PeeringSession session =
         dao.update(invite.getSessionId(), PeeringSession.class, new Function<PeeringSession, PeeringSession>() {
           @Override
           public PeeringSession apply(PeeringSession storedSession) {
             storedSession.setInviteeId(invitee.getId());
             storedSession.setInviteeDeviceId(inviteReply.getInviteeDeviceId());
+            storedSession.setInviterPhoneNumber(inviteReply.getInviterPhoneNumber());
             storedSession.setState(PeeringSession.State.REQUESTED);
             return storedSession;
           }
         });
-    objectPusher.pushObject("CONFIRM_SESSION_AS_INVITEE", session, inviteReply.getInviteeDeviceId());
+    objectPusher.pushObject("CONFIRM_SESSION", session, inviteReply.getInviteeDeviceId());
   }
 
   public void approveSession(long sessionId, boolean approved, User user) {
     PeeringSession session = dao.setSessionApproval(sessionId, approved);
     KoreduUser invitee = dao.getUserById(session.getInviteeId());
-    if (invitee.getGaiaId().equals(user.getUserId())) {
-      // this is the invitee approving the invitation - ask inviter to confirm
-      if (approved) {
-        objectPusher.pushObject("CONFIRM_SESSION_AS_INVITER", session, session.getInviterDeviceId());
-      } else {
-        objectPusher.pushObject("SESSION_DENIED", session, session.getInviterDeviceId());
-      }
+    final PeeringSession.State newState;
+    String pushAction;
+    if (approved) {
+      newState = PeeringSession.State.APPROVED;
+      pushAction = "SESSION_CONFIRMED";
     } else {
-      KoreduUser inviter = dao.getUserById(session.getInviterId());
-      if (inviter.getGaiaId().equals(user.getUserId())) {
-        if (session.getState() == PeeringSession.State.APPROVED_BY_INVITEE) {
-          dao.update(session.getId(), PeeringSession.class,
-              new Function<PeeringSession, PeeringSession>() {
-                @Override
-                public PeeringSession apply(PeeringSession storedSession) {
-                  storedSession.setState(PeeringSession.State.APPROVED);
-                  return storedSession;
-                }
-              });
-          objectPusher.pushObject("SESSION_CONFIRMED", session.getInviterDeviceId(), session.getInviteeDeviceId());
-        } else {
-          throw new IllegalStateException("inviter approved session not APPROVED_BY_INVITEE: " + session);
-        }
-      }
+      newState = PeeringSession.State.DENIED;
+      pushAction = "SESSION_DENIED";
     }
+    dao.update(session.getId(), PeeringSession.class,
+        new Function<PeeringSession, PeeringSession>() {
+          @Override
+          public PeeringSession apply(PeeringSession storedSession) {
+            storedSession.setState(newState);
+            return storedSession;
+          }
+        });
+    objectPusher.pushObject(pushAction, session, session.getInviterDeviceId());
   }
 
   public void publishLocation(UserLocation userLocation, User user) {
@@ -92,10 +86,9 @@ public class KoreduApi {
       log.warning("null deviceId when publishing location, ignoring");
       return;
     }
-    KoreduUser koreduUser = dao.getUser(user.getUserId(), userLocation.getDeviceId());
-    if (user == null) {
-      log.warning("unknown tried to publish location, ignoring. gaiaId=" + user.getUserId()
-          + ", deviceId=" + userLocation.getDeviceId());
+    KoreduUser koreduUser = dao.getUser(userLocation.getDeviceId());
+    if (koreduUser == null) {
+      log.warning("unknown tried to publish location, ignoring. deviceId=" + userLocation.getDeviceId());
       return;
     }
     userLocation.setUserId(koreduUser.getId());

@@ -37,10 +37,8 @@ public class GCMIntentService extends GCMBaseIntentService {
     String data = intent.getStringExtra("data");
     if ("SEND_SMS".equals(action)) {
       smsSender.send(intent.getStringExtra("phoneNumber"), intent.getStringExtra("message"));
-    } else if ("CONFIRM_SESSION_AS_INVITEE".equals(action)) {
-      peeringClient.askWhetherToAllowSession(jsonMapper.fromJson(data, PeeringSession.class), false);
-    } else if ("CONFIRM_SESSION_AS_INVITER".equals(action)) {
-      peeringClient.askWhetherToAllowSession(jsonMapper.fromJson(data, PeeringSession.class), true);
+    } else if ("CONFIRM_SESSION".equals(action)) {
+      peeringClient.askWhetherToAllowSession(jsonMapper.fromJson(data, PeeringSession.class));
     } else if ("VERIFY".equals(action)) {
       peeringClient.verifyPhoneNumber(jsonMapper.fromJson(data, Verification.class));
     } else if ("SESSION_CONFIRMED".equals(action)) {

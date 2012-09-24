@@ -10,26 +10,38 @@ import javax.persistence.Id;
  * @author thomas@zenior.no (Thomas Oldervoll)
  */
 @DatabaseTable
-public class UserLocation {
+public class UserLocation implements Sanitizable {
 
-  @Id private Long id; // unique id on the server-side, userId on the server-side
+  @Id
+  private Long id; // unique id on the server-side, userId on the server-side
 
   private Long userId;
 
-  @DatabaseField @NotSaved private String displayName;
-  @DatabaseField private String deviceId;
+  @DatabaseField
+  @NotSaved
+  private String displayName;
+  @DatabaseField
+  private String deviceId;
 
-  @DatabaseField private String provider;
-  @DatabaseField private long time;
-  @DatabaseField private double latitude;
-  @DatabaseField private double longitude;
-  @DatabaseField private Float accuracy;
-  @DatabaseField private Double altitude;
-  @DatabaseField private Float bearing;
-  @DatabaseField private Float speed;
+  @DatabaseField
+  private String provider;
+  @DatabaseField
+  private long time;
+  @DatabaseField
+  private double latitude;
+  @DatabaseField
+  private double longitude;
+  @DatabaseField
+  private Float accuracy;
+  @DatabaseField
+  private Double altitude;
+  @DatabaseField
+  private Float bearing;
+  @DatabaseField
+  private Float speed;
 
   UserLocation() {
-    // needed for Objectify
+    // needed for Objectify and Jackson
   }
 
   public UserLocation(String deviceId, String provider, long time, double latitude, double longitude, Float accuracy,
@@ -100,5 +112,11 @@ public class UserLocation {
   public Float getSpeed() {
     return speed;
   }
+
+  @Override
+  public void sanitize() {
+    deviceId = null;
+  }
+
 }
 
