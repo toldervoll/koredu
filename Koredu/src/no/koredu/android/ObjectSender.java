@@ -7,4 +7,6 @@ public interface ObjectSender {
 
   void send(String path, Object object);
 
+  String syncSend(String path, Object object);
+
 }

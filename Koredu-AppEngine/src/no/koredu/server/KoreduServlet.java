@@ -55,6 +55,7 @@ public abstract class KoreduServlet extends HttpServlet {
     response.setContentType("text/plain");
     PrintWriter writer = response.getWriter();
     writer.print(data);
+    writer.flush();
     writer.close();
   }
 

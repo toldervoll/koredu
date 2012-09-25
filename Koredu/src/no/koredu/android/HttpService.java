@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import com.google.common.base.Charsets;
-import com.google.common.io.ByteStreams;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -23,8 +22,6 @@ public class HttpService extends IntentService {
   private static final String SERVICE_NAME = "HttpService";
   private static final String TAG = HttpService.class.getName();
 
-  private AccountProvider accountProvider;
-
   public HttpService() {
     super(SERVICE_NAME);
     disableConnectionReuseIfNecessary();
@@ -33,7 +30,6 @@ public class HttpService extends IntentService {
   @Override
   public void onCreate() {
     super.onCreate();
-    accountProvider = ObjectRegistry.get(this).getAccountProvider();
   }
 
   public static void post(Context context, String path, String data) {
@@ -58,41 +54,61 @@ public class HttpService extends IntentService {
     }
   }
 
-  private void sendToServer(String path, String data) {
+  public static String sendToServer(String path, String data) {
     // TODO: retry with exponential backoff
     byte[] payloadBytes = data.getBytes(Charsets.UTF_8);
     URL url = null;
     HttpURLConnection urlConnection = null;
+    InputStream in = null;
+    OutputStream out = null;
+    String response = null;
     try {
       url = new URL(getBaseUrl() + path);
       urlConnection = (HttpURLConnection) url.openConnection();
       urlConnection.setDoOutput(true);
       urlConnection.setFixedLengthStreamingMode(payloadBytes.length);
       urlConnection.setRequestProperty("Content-Type", "application/json");
-      Log.v(TAG, "Getting auth cookie, thread=" + Thread.currentThread().getName());
-      String authCookie = accountProvider.getAuthenticationCookie();
-      Log.v(TAG, "Using auth cookie " + authCookie);
-      if (authCookie != null) {
-        urlConnection.setRequestProperty("Cookie", authCookie);
-      }
-      OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+      out = new BufferedOutputStream(urlConnection.getOutputStream());
       out.write(payloadBytes);
       out.close();
-      InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-      byte[] responseData = new byte[in.available()];
-      ByteStreams.readFully(in, responseData);
-      String response = new String(responseData, Charsets.UTF_8);
-      Log.d(TAG, "response from " + url + ": " + response);
+      in = new BufferedInputStream(urlConnection.getInputStream());
+      int responseCode = urlConnection.getResponseCode();
+      String responseMessage = urlConnection.getResponseMessage();
+      Log.v(TAG, "response code from " + url + ": " + responseCode + " " + responseMessage);
+      if ((responseCode / 100) == 2) {
+        byte[] responseData = readStream(in);
+        response = new String(responseData, Charsets.UTF_8);
+        Log.d(TAG, "response from " + url + ": " + response);
+      } else {
+        // throw and let caller retry
+        throw new RuntimeException("Non-ok response from " + url + ": " + responseCode + " " + responseMessage);
+      }
     } catch (IOException e) {
+      Log.e(TAG, "failed to post to " + url);
       throw new RuntimeException("Failed to send payload to " + url, e);
     } finally {
       if (urlConnection != null) {
         urlConnection.disconnect();
       }
+      if (out != null) {
+        try {
+          out.close();
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to close OutputStream", e);
+        }
+      }
+      if (in != null) {
+        try {
+          in.close();
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to close InputStream", e);
+        }
+      }
     }
+    return response;
   }
 
-  private String getBaseUrl() {
+  private static String getBaseUrl() {
     if (USE_LOCAL_SERVER && "google_sdk".equals(Build.PRODUCT)) {
       return LOCAL_BASE_URL;
     } else {
@@ -100,5 +116,14 @@ public class HttpService extends IntentService {
     }
   }
 
+  private static byte[] readStream(InputStream in)
+      throws IOException {
+    byte[] buf = new byte[1024];
+    int count = 0;
+    ByteArrayOutputStream out = new ByteArrayOutputStream(1024);
+    while ((count = in.read(buf)) != -1)
+      out.write(buf, 0, count);
+    return out.toByteArray();
+  }
 
 }

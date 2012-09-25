@@ -81,15 +81,16 @@ public class KoreduApi {
     objectPusher.pushObject(pushAction, session, session.getInviterDeviceId());
   }
 
-  public void publishLocation(UserLocation userLocation, User user) {
+  public int publishLocation(UserLocation userLocation, User user) {
+    int peerCount = 0;
     if (userLocation.getDeviceId() == null) {
       log.warning("null deviceId when publishing location, ignoring");
-      return;
+      return 0;
     }
     KoreduUser koreduUser = dao.getUser(userLocation.getDeviceId());
     if (koreduUser == null) {
       log.warning("unknown tried to publish location, ignoring. deviceId=" + userLocation.getDeviceId());
-      return;
+      return 0;
     }
     userLocation.setUserId(koreduUser.getId());
     dao.putLocation(userLocation);
@@ -97,14 +98,18 @@ public class KoreduApi {
     Iterable<PeeringSession> inviterSessions = dao.getActiveSessionsForInviter(koreduUser.getId());
     for (PeeringSession session : inviterSessions) {
       log.warning("Sending location of " + userLocation.getUserId() + " to " + session.getInviteeId());
+      peerCount++;
       objectPusher.pushObject("LOCATION_UPDATE", userLocation, session.getInviteeDeviceId());
     }
     log.warning(("Finding sessions where " + koreduUser.getId() + " is invitee:"));
     Iterable<PeeringSession> inviteeSessions = dao.getActiveSessionsForInvitee(koreduUser.getId());
     for (PeeringSession session : inviteeSessions) {
       log.warning("Sending location of " + userLocation.getUserId() + " to " + session.getInviterId());
+      peerCount++;
       objectPusher.pushObject("LOCATION_UPDATE", userLocation, session.getInviterDeviceId());
     }
+    log.info("Published location of user " + koreduUser.getId() + " to " + peerCount + " peers");
+    return peerCount;
   }
 
   public DAO getDao() {

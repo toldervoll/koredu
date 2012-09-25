@@ -38,8 +38,16 @@ public class DirectObjectSender implements ObjectSender {
       koreduApi.approveSession(Long.parseLong((String) object), true, user);
     } else if ("/denySession".equals(path)) {
       koreduApi.approveSession(Long.parseLong((String) object), false, user);
-    } else if ("/publishLocation".equals(path)) {
-      koreduApi.publishLocation((UserLocation) object, user);
+    } else {
+      throw new IllegalArgumentException("unknown path " + path);
+    }
+  }
+
+  @Override
+  public String syncSend(String path, Object object) {
+    tracker.track(deviceId, path, "server");
+    if ("/publishLocation".equals(path)) {
+      return String.valueOf(koreduApi.publishLocation((UserLocation) object, user));
     } else {
       throw new IllegalArgumentException("unknown path " + path);
     }

@@ -52,6 +52,7 @@ public class MainActivity extends SherlockMapActivity {
   private Bus bus;
   private PeeringClient peeringClient;
   private LocationPublisher locationPublisher;
+  private UserInteraction userInteraction;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainActivity extends SherlockMapActivity {
     bus = reg.getBus();
     peeringClient = reg.getPeeringClient();
     locationPublisher = reg.getLocationPublisher();
+    userInteraction = reg.getUserInteraction();
     setContentView(R.layout.main);
     mapView = (MapView) findViewById(R.id.mapview);
     mapView.setBuiltInZoomControls(true);
@@ -90,12 +92,14 @@ public class MainActivity extends SherlockMapActivity {
   protected void onResume() {
     super.onResume();
     bus.register(this);
+    userInteraction.setActivityVisible(true);
     mapView.invalidate();
   }
 
   @Override
   protected void onPause() {
     bus.unregister(this);
+    userInteraction.setActivityVisible(false);
     super.onPause();
   }
 

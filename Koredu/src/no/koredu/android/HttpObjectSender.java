@@ -20,4 +20,10 @@ public class HttpObjectSender implements ObjectSender {
     String json = jsonMapper.toJson(object);
     HttpService.post(context, path, json);
   }
+
+  @Override
+  public String syncSend(String path, Object object) {
+    String json = jsonMapper.toJson(object);
+    return HttpService.sendToServer(path, json);
+  }
 }

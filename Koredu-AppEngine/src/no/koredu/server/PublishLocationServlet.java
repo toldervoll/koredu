@@ -14,7 +14,7 @@ public class PublishLocationServlet extends KoreduServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserLocation userLocation = getPostData(request, UserLocation.class);
-    koreduApi.publishLocation(userLocation, getUser());
-    writeTextResponse(response, "OK");
+    int peerCount = koreduApi.publishLocation(userLocation, getUser());
+    writeTextResponse(response, String.valueOf(peerCount));
   }
 }

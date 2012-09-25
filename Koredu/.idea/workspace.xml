@@ -34,23 +34,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80f7ff7c-b78a-4fc1-b7d1-5be97475ba36" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Sanitizable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduUser.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/InviteReply.java" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/InviteReply.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/UserLocation.java" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/UserLocation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Verification.java" afterPath="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Verification.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduServlet.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/PublishLocationServlet.java" afterPath="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/PublishLocationServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" afterPath="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/HttpObjectSender.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/HttpObjectSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/HttpService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/HttpService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/LocationPublishingService.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/LocationPublishingService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/MainActivity.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/ObjectSender.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/ObjectSender.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" afterPath="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" />
     </list>
     <ignored path="Koredu.iws" />
@@ -73,7 +67,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" line="23" class="no.koredu.server.CreateSessionServlet" package="no.koredu.server">
+      <breakpoint url="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" line="19" class="no.koredu.server.CreateSessionServlet" package="no.koredu.server">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -86,33 +80,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java" line="86" class="no.koredu.android.HttpService" package="no.koredu.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" line="44" class="no.koredu.android.PeeringService" package="no.koredu.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/AndroidSmsSender.java" line="14" class="no.koredu.android.AndroidSmsSender" package="no.koredu.android">
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java" line="87" class="no.koredu.android.HttpService" package="no.koredu.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -126,19 +94,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" line="37" class="no.koredu.testing.DirectObjectSender" package="no.koredu.testing">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="51" class="no.koredu.android.PeeringClient" package="no.koredu.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -216,19 +171,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="38" class="no.koredu.android.PeeringClient" package="no.koredu.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java" line="96" class="no.koredu.android.auth.AndroidAccountProvider" package="no.koredu.android.auth">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -242,7 +184,59 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="38" class="no.koredu.android.PeeringClient" package="no.koredu.android">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="46" class="no.koredu.android.PeeringClient" package="no.koredu.android">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="51" class="no.koredu.android.PeeringClient" package="no.koredu.android">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="55" class="no.koredu.android.PeeringClient" package="no.koredu.android">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" line="63" class="no.koredu.android.PeeringClient" package="no.koredu.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -282,6 +276,19 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" line="37" class="no.koredu.android.GCMIntentService" package="no.koredu.android">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/no/koredu/android/MainActivity.java" line="83" class="no.koredu.android.MainActivity" package="no.koredu.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -335,27 +342,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PeeringClient.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java">
+      <file leaf-file-name="HttpService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="32" selection-start="2159" selection-end="2159" vertical-scroll-proportion="0.0">
+            <state line="77" column="0" selection-start="2704" selection-end="2704" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PeeringTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="332" column="90" selection-start="15988" selection-end="15988" vertical-scroll-proportion="0.8694097">
-              <folding>
-                <element signature="e#3636#3652#0" expanded="true" />
-                <element signature="e#3723#3739#0" expanded="true" />
-                <element signature="e#5656#5672#0" expanded="true" />
-                <element signature="e#7975#7991#0" expanded="true" />
-                <element signature="e#10964#10980#0" expanded="true" />
-                <element signature="e#13858#13874#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -363,43 +354,7 @@
       <file leaf-file-name="LocationPublishingService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/no/koredu/android/LocationPublishingService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="1624" selection-end="1624" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserInteraction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="90" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DisplayNameResolver.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/DisplayNameResolver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PeeringSession.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="0" selection-start="1369" selection-end="1369" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidAccountProvider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="2826" selection-end="2826" vertical-scroll-proportion="0.0">
+            <state line="134" column="33" selection-start="4845" selection-end="4845" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -414,19 +369,64 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidSmsSender.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/AndroidSmsSender.java">
+      <file leaf-file-name="PeeringClient.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
+            <state line="14" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.24725275">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PeeringService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringService.java">
+      <file leaf-file-name="UserInteraction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1418" selection-end="1418" vertical-scroll-proportion="0.0">
+            <state line="101" column="0" selection-start="3839" selection-end="3839" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="83" column="0" selection-start="3492" selection-end="3492" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SmsProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="27" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SmsReceiver.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/SmsReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="23" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DirectObjectSender.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="83" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocationPublisher.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/no/koredu/android/LocationPublisher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="17" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -445,22 +445,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduUser.java" />
-        <option value="$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java" />
-        <option value="$PROJECT_DIR$/src/no/koredu/android/PeeringService.java" />
-        <option value="$PROJECT_DIR$/src/no/koredu/android/GCMIntentService.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/DAO.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java" />
-        <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectPusher.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java" />
-        <option value="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java" />
         <option value="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/UserLocation.java" />
         <option value="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Verification.java" />
         <option value="$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/InviteReply.java" />
-        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" />
         <option value="$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java" />
-        <option value="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" />
         <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/PublishLocationServlet.java" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduServlet.java" />
+        <option value="$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/ObjectSender.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/HttpObjectSender.java" />
+        <option value="$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/HttpService.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/LocationPublishingService.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java" />
       </list>
     </option>
   </component>
@@ -840,7 +840,7 @@
       <recent name="$PROJECT_DIR$/../Koredu-AppEngine/war" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.phone">
+  <component name="RunManager" selected="Android Application.emulator 2.2">
     <configuration default="false" name="PeeringTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="Koredu-test" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1295,7 +1295,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="22" width="1676" height="1028" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1312,7 +1312,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938574" sideWeight="0.6703418" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938574" sideWeight="0.6703418" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296582" sideWeight="0.93488944" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -1362,7 +1362,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working simple version with no attemts to verify inviter or invitee" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1378,6 +1378,7 @@
     <MESSAGE value="All App Engine requests are now authenticated. Extracted KoreduServlet. Moved &quot;coming soon&quot; message to a static file." />
     <MESSAGE value="Simplified peering by always requiring an SMS to initiate a session. Removed phone number verification code. Still needs cleanup, on the client side especially." />
     <MESSAGE value="Removed registration" />
+    <MESSAGE value="Working simple version with no attemts to verify inviter or invitee" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1387,86 +1388,95 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/ObjectPusher.java">
+    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/CreateSessionServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="44" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0">
+        <state line="20" column="4" selection-start="713" selection-end="713" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/GCMObjectPusher.java">
+    <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="22" selection-start="1884" selection-end="1884" vertical-scroll-proportion="0.0">
+        <state line="53" column="17" selection-start="1945" selection-end="1945" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/UserLocation.java">
+    <entry file="jar://$USER_HOME$/Android/android-sdk-macosx/platforms/android-16/android.jar!/android/app/IntentService.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="39" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#831#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/ObjectSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="46" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/Verification.java">
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/HttpObjectSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="36" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/InviteReply.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="9" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0">
+        <state line="26" column="11" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Koredu-AppEngine/src/no/koredu/server/KoreduApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="44" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
+        <state line="83" column="13" selection-start="3357" selection-end="3357" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringService.java">
+    <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/testing/DirectObjectSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1418" selection-end="1418" vertical-scroll-proportion="0.0">
+        <state line="52" column="83" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/auth/AndroidAccountProvider.java">
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/LocationPublisher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="2826" selection-end="2826" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/AndroidSmsSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-common/src/no/koredu/common/PeeringSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="1369" selection-end="1369" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/DisplayNameResolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
+        <state line="5" column="17" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/no/koredu/android/LocationPublishingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1624" selection-end="1624" vertical-scroll-proportion="0.0">
+        <state line="134" column="33" selection-start="4845" selection-end="4845" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/SmsReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="23" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/SmsProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="27" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="0" selection-start="3839" selection-end="3839" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/HttpService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="0" selection-start="2704" selection-end="2704" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1478,31 +1488,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/UserInteraction.java">
+    <entry file="file://$PROJECT_DIR$/src/no/koredu/android/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="90" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.0">
+        <state line="83" column="0" selection-start="3492" selection-end="3492" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/no/koredu/android/PeeringClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="32" selection-start="2159" selection-end="2159" vertical-scroll-proportion="0.0">
+        <state line="14" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.24725275">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Koredu-test/src/no/koredu/common/PeeringTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="332" column="90" selection-start="15988" selection-end="15988" vertical-scroll-proportion="0.8694097">
-          <folding>
-            <element signature="e#3636#3652#0" expanded="true" />
-            <element signature="e#3723#3739#0" expanded="true" />
-            <element signature="e#5656#5672#0" expanded="true" />
-            <element signature="e#7975#7991#0" expanded="true" />
-            <element signature="e#10964#10980#0" expanded="true" />
-            <element signature="e#13858#13874#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

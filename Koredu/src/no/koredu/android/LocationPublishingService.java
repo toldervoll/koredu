@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
-import com.google.android.gcm.GCMRegistrar;
 import no.koredu.common.UserLocation;
 
 public class LocationPublishingService extends IntentService {
@@ -22,6 +21,7 @@ public class LocationPublishingService extends IntentService {
 
   private ObjectSender objectSender;
   private DeviceIdProvider deviceIdProvider;
+  private UserInteraction userInteraction;
   private LocationManager locationManager;
   private PendingIntent sendLocationIntent;
 
@@ -31,11 +31,12 @@ public class LocationPublishingService extends IntentService {
 
   @Override
   public void onCreate() {
-    Log.d(TAG, "creating " + SERVICE_NAME);    
+    Log.d(TAG, "creating " + SERVICE_NAME);
     super.onCreate();
     ObjectRegistry reg = ObjectRegistry.get(this);
     objectSender = reg.getObjectSender();
     deviceIdProvider = reg.getDeviceIdProvider();
+    userInteraction = reg.getUserInteraction();
     locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     sendLocationIntent = createPendingIntent();
   }
@@ -58,7 +59,7 @@ public class LocationPublishingService extends IntentService {
   private void doRun() {
     for (String provider : locationManager.getAllProviders()) {
       locationManager.requestLocationUpdates(
-        provider, MIN_UPDATE_TIME_MS, MIN_DISTANCE_METERS, sendLocationIntent);
+          provider, MIN_UPDATE_TIME_MS, MIN_DISTANCE_METERS, sendLocationIntent);
     }
   }
 
@@ -99,9 +100,9 @@ public class LocationPublishingService extends IntentService {
 //        .setAction(ACTION_SEND_LOCATION_SMS)
 //        .putExtra(MainActivity.EXTRA_PHONE_NUMBER, phoneNumber);
 //    PendingIntent pendingIntent =  PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);   
-    //locationManager.requestSingleUpdate(getLocationProvider(), pendingIntent);
+  //locationManager.requestSingleUpdate(getLocationProvider(), pendingIntent);
 //    Location lastKnownLocation = locationManager.getLastKnownLocation(getLocationProvider());
- // }
+  // }
 
   private PendingIntent createPendingIntent() {
     Intent intent = new Intent(this, LocationPublishingService.class);
@@ -110,14 +111,30 @@ public class LocationPublishingService extends IntentService {
   }
 
   private void doShutdown() {
+    Log.i(TAG, "Shutting down");
     locationManager.removeUpdates(sendLocationIntent);
     stopSelf();
   }
 
-  private void sendLocation(Location location) {
-    Log.d(TAG, "Sending location " + location);
-    UserLocation userLocation = createUserLocation(location);
-    objectSender.send("/publishLocation", userLocation);
+  private boolean sendLocation(Location location) {
+    try {
+      Log.d(TAG, "Sending location " + location);
+      UserLocation userLocation = createUserLocation(location);
+      int peerCount = Integer.parseInt(objectSender.syncSend("/publishLocation", userLocation));
+      handlePeerCountUpdate(peerCount);
+      return true;
+    } catch (Exception e) {
+      Log.e(TAG, "Failed to send location", e);
+      return false;
+    }
+  }
+
+  private void handlePeerCountUpdate(int peerCount) {
+    Log.i(TAG, "Peer count is now " + peerCount);
+    userInteraction.showActiveSessionsNotification(peerCount);
+    if (peerCount == 0) {
+      doShutdown();
+    }
   }
 
   private UserLocation createUserLocation(Location location) {
