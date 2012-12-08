@@ -6,7 +6,6 @@ import no.koredu.android.SmsSender;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.Sanitizable;
 import no.koredu.common.UserLocation;
-import no.koredu.common.Verification;
 import no.koredu.server.ObjectPusher;
 
 import java.util.Map;
@@ -48,9 +47,7 @@ public class DirectObjectPusher implements ObjectPusher {
       tracker.track("server", action, deviceId);
       PeeringClient peeringClient = peeringsClients.get(deviceId);
       if ("CONFIRM_SESSION".equals(action)) {
-        peeringClient.askWhetherToAllowSession((PeeringSession) object);
-      } else if ("VERIFY".equals(action)) {
-        peeringClient.verifyPhoneNumber((Verification) object);
+        peeringClient.confirmSession((PeeringSession) object);
       } else if ("SESSION_CONFIRMED".equals(action)) {
         peeringClient.handleSessionConfirmation((PeeringSession) object, true);
       } else if ("SESSION_DENIED".equals(action)) {

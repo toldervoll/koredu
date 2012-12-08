@@ -17,8 +17,8 @@ public class MockKoreduClient {
   private final DirectObjectSender objectSender;
   private final LocationPublisher locationPublisher;
   private final UserInteraction userInteraction;
-  private final PhoneNumberVerifier phoneNumberVerifier;
   private final Bus bus;
+  private final PeerCountUpdater peerCountUpdater;
   private final PeeringClient peeringClient;
   private final SmsProcessor smsProcessor;
   private final DirectSmsSender smsSender;
@@ -30,11 +30,11 @@ public class MockKoreduClient {
     objectSender = new DirectObjectSender(deviceId, tracker);
     locationPublisher = mocksControl.createMock(LocationPublisher.class);
     userInteraction = mocksControl.createMock(UserInteraction.class);
-    phoneNumberVerifier = new PhoneNumberVerifier(db, deviceIdProvider, objectSender);
     bus = new Bus();
+    peerCountUpdater = new PeerCountUpdater(db, bus);
     peeringClient = new PeeringClient(db, deviceIdProvider, displayNameResolver, objectSender, locationPublisher,
-        userInteraction, phoneNumberVerifier, bus);
-    smsProcessor = new SmsProcessor(phoneNumberVerifier, peeringClient);
+        userInteraction, bus, peerCountUpdater);
+    smsProcessor = new SmsProcessor(peeringClient);
     smsSender = new DirectSmsSender(phoneNumber, tracker);
   }
 
@@ -64,10 +64,6 @@ public class MockKoreduClient {
 
   public UserInteraction getUserInteraction() {
     return userInteraction;
-  }
-
-  public PhoneNumberVerifier getPhoneNumberVerifier() {
-    return phoneNumberVerifier;
   }
 
   public Bus getBus() {
