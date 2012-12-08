@@ -15,7 +15,6 @@ import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
-import no.koredu.android.auth.AccountList;
 import no.koredu.android.database.DatabaseManager;
 
 import java.util.List;
@@ -37,10 +36,9 @@ public class MainActivity extends SherlockMapActivity {
   public static final String EXTRA_SESSION_ID = "EXTRA_SESSION_ID";
 
   private static final int MENU_ITEM_ADD_PEER = Menu.FIRST;
-  private static final int MENU_ITEM_CLEAR_MAP = Menu.FIRST + 1;
+  private static final int MENU_ITEM_CLEAR_DATA = Menu.FIRST + 1;
   private static final int MENU_ITEM_ADD_DUMMY_DATA = Menu.FIRST + 2;
   private static final int MENU_ITEM_STOP_LOCATION_PUBLISHING = Menu.FIRST + 3;
-  private static final int MENU_ITEM_SWITCH_ACCOUNT = Menu.FIRST + 4;
 
   private static final int DIALOG_APPROVE_PEER = 0;
 
@@ -71,21 +69,32 @@ public class MainActivity extends SherlockMapActivity {
     myLocationOverlay.enableMyLocation();
     mapOverlays.add(myLocationOverlay);
     Drawable locationMarker = this.getResources().getDrawable(R.drawable.placemarker_red);
-    mPeerLocationOverlay = new PeerLocationOverlay(locationMarker);
+    mPeerLocationOverlay = new PeerLocationOverlay(locationMarker, mapView);
     mapOverlays.add(mPeerLocationOverlay);
     mapView.getController().setZoom(14);
 
     approveText = getResources().getText(R.string.peer_approval_dialog_approve);
     denyText = getResources().getText(R.string.peer_approval_dialog_deny);
 
-    Intent intent = getIntent();
+    handleIntent(getIntent());
+  }
+
+  private void handleIntent(Intent intent) {
     String action = intent.getAction();
     Bundle extras = intent.getExtras();
+    Log.d(TAG, "handling intent with action=" + action + ", extras=" + extras);
     if (ACTION_INVITE_PEER.equals(action)) {
       PeeringService.sendInvite(this, extras.getInt(EXTRA_PEER_ID));
     } else if (ACTION_APPROVE_PEER.equals(action)) {
       showDialog(DIALOG_APPROVE_PEER, extras);
     }
+  }
+
+  @Override
+  public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    setIntent(intent);
+    handleIntent(intent);
   }
 
   @Override
@@ -108,6 +117,7 @@ public class MainActivity extends SherlockMapActivity {
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
+        mPeerLocationOverlay.refresh();
         mapView.invalidate();
       }
     });
@@ -125,11 +135,9 @@ public class MainActivity extends SherlockMapActivity {
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
     menu.add(Menu.NONE, MENU_ITEM_ADD_DUMMY_DATA, Menu.CATEGORY_SYSTEM, "Add dummy data")
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-    menu.add(Menu.NONE, MENU_ITEM_CLEAR_MAP, Menu.CATEGORY_SYSTEM, "Clear map")
+    menu.add(Menu.NONE, MENU_ITEM_CLEAR_DATA, Menu.CATEGORY_SYSTEM, "Clear data")
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
     menu.add(Menu.NONE, MENU_ITEM_STOP_LOCATION_PUBLISHING, Menu.CATEGORY_SYSTEM, "Stop location publishing")
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-    menu.add(Menu.NONE, MENU_ITEM_SWITCH_ACCOUNT, Menu.CATEGORY_SYSTEM, "Switch account")
         .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
     return true;
   }
@@ -143,19 +151,17 @@ public class MainActivity extends SherlockMapActivity {
       case MENU_ITEM_ADD_DUMMY_DATA:
         addDummyData();
         return true;
-      case MENU_ITEM_CLEAR_MAP:
-        clearMap();
+      case MENU_ITEM_CLEAR_DATA:
+        clearData();
         return true;
       case MENU_ITEM_STOP_LOCATION_PUBLISHING:
         locationPublisher.stop();
-      case MENU_ITEM_SWITCH_ACCOUNT:
-        switchAccount();
       default:
         return false;
     }
   }
 
-  private void clearMap() {
+  private void clearData() {
     db.deleteAllPeers();
     mapView.invalidate();
   }
@@ -168,10 +174,6 @@ public class MainActivity extends SherlockMapActivity {
     db.putPeer(new Peer("Thomas Oldervoll", "+4748193450", 0, 0, 0.0f, System.currentTimeMillis(), Long.MAX_VALUE));
     db.putPeer(new Peer("Android 2.2", "+5556", 0, 0, 0.0f, System.currentTimeMillis(), Long.MAX_VALUE));
     db.putPeer(new Peer("Android 4.0", "+5554", 0, 0, 0.0f, System.currentTimeMillis(), Long.MAX_VALUE));
-  }
-
-  private void switchAccount() {
-    startActivity(new Intent(this, AccountList.class));
   }
 
   @Override

@@ -56,7 +56,12 @@ public class HttpService extends IntentService {
 
   public static String sendToServer(String path, String data) {
     // TODO: retry with exponential backoff
-    byte[] payloadBytes = data.getBytes(Charsets.UTF_8);
+    byte[] payloadBytes = null;
+    try {
+      payloadBytes = data.getBytes(Charsets.UTF_8.name());
+    } catch (UnsupportedEncodingException e) {
+      throw new RuntimeException(e);
+    }
     URL url = null;
     HttpURLConnection urlConnection = null;
     InputStream in = null;
@@ -77,7 +82,7 @@ public class HttpService extends IntentService {
       Log.v(TAG, "response code from " + url + ": " + responseCode + " " + responseMessage);
       if ((responseCode / 100) == 2) {
         byte[] responseData = readStream(in);
-        response = new String(responseData, Charsets.UTF_8);
+        response = new String(responseData, Charsets.UTF_8.name());
         Log.d(TAG, "response from " + url + ": " + response);
       } else {
         // throw and let caller retry

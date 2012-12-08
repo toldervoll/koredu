@@ -6,7 +6,6 @@ import android.util.Log;
 import com.google.android.gcm.GCMBaseIntentService;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.UserLocation;
-import no.koredu.common.Verification;
 
 public class GCMIntentService extends GCMBaseIntentService {
 
@@ -38,9 +37,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     if ("SEND_SMS".equals(action)) {
       smsSender.send(intent.getStringExtra("phoneNumber"), intent.getStringExtra("message"));
     } else if ("CONFIRM_SESSION".equals(action)) {
-      peeringClient.askWhetherToAllowSession(jsonMapper.fromJson(data, PeeringSession.class));
-    } else if ("VERIFY".equals(action)) {
-      peeringClient.verifyPhoneNumber(jsonMapper.fromJson(data, Verification.class));
+      peeringClient.confirmSession(jsonMapper.fromJson(data, PeeringSession.class));
     } else if ("SESSION_CONFIRMED".equals(action)) {
       handleSessionConfirmation(data, true);
     } else if ("SESSION_DENIED".equals(action)) {

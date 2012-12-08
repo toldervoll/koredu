@@ -5,7 +5,8 @@ import no.koredu.android.database.DatabaseManager;
 import no.koredu.common.InviteReply;
 import no.koredu.common.PeeringSession;
 import no.koredu.common.UserLocation;
-import no.koredu.common.Verification;
+
+import java.util.Timer;
 
 /**
  * Client-side logic for peering. Should not have any Android dependencies.
@@ -14,25 +15,29 @@ import no.koredu.common.Verification;
  */
 public class PeeringClient {
 
+  private static final long ONE_HOUR = 60*60*1000L;
+
   private final DatabaseManager db;
   private final DeviceIdProvider deviceIdProvider;
   private final DisplayNameResolver displayNameResolver;
   private final ObjectSender objectSender;
   private final LocationPublisher locationPublisher;
   private final UserInteraction userInteraction;
-  private final PhoneNumberVerifier phoneNumberVerifier;
   private final Bus bus;
+  private final PeerCountUpdater peerCountUpdater;
+  private final Timer timer = new Timer();
 
   public PeeringClient(DatabaseManager db, DeviceIdProvider deviceIdProvider, DisplayNameResolver displayNameResolver,
-                       ObjectSender objectSender, LocationPublisher locationPublisher, UserInteraction userInteraction, PhoneNumberVerifier phoneNumberVerifier, Bus bus) {
+                       ObjectSender objectSender, LocationPublisher locationPublisher, UserInteraction userInteraction,
+                       Bus bus, PeerCountUpdater peerCountUpdater) {
     this.db = db;
     this.deviceIdProvider = deviceIdProvider;
     this.displayNameResolver = displayNameResolver;
     this.objectSender = objectSender;
     this.locationPublisher = locationPublisher;
     this.userInteraction = userInteraction;
-    this.phoneNumberVerifier = phoneNumberVerifier;
     this.bus = bus;
+    this.peerCountUpdater = peerCountUpdater;
   }
 
   public void sendInvite(int peerId) {
@@ -48,7 +53,8 @@ public class PeeringClient {
     objectSender.send("/requestSession", inviteReply);
   }
 
-  public void askWhetherToAllowSession(PeeringSession session) {
+  public void confirmSession(PeeringSession session) {
+    setUserIdForPeer(session.getInviterPhoneNumber(), session.getInviterId());
     userInteraction.askWhetherToAllowSession(session);
   }
 
@@ -57,11 +63,15 @@ public class PeeringClient {
     if (approved) {
       // TODO: make expiration configurable. Use 1 hour for now.
       locationPublisher.start();
+      timer.schedule(peerCountUpdater, ONE_HOUR);
     }
+    setUserIdForPeer(session.getInviteePhoneNumber(), session.getInviteeId());
   }
 
-  public void verifyPhoneNumber(Verification verification) {
-    phoneNumberVerifier.verify(verification);
+  private void setUserIdForPeer(String phoneNumber, Long userId) {
+    Peer peer = new Peer(displayNameResolver.getDisplayName(phoneNumber), phoneNumber);
+    peer.setUserId(userId);
+    db.putPeer(peer);
   }
 
   public void approveSession(long sessionId, boolean approved) {

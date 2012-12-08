@@ -43,7 +43,7 @@ public class KoreduApi {
     if (invite == null) {
       throw new RuntimeException("No invite found for " + inviteReply);
     }
-    final KoreduUser invitee = dao.getUser(inviteReply.getInviteeDeviceId());
+    final KoreduUser invitee = dao.getOrCreateUser(inviteReply.getInviteeDeviceId());
     PeeringSession session =
         dao.update(invite.getSessionId(), PeeringSession.class, new Function<PeeringSession, PeeringSession>() {
           @Override

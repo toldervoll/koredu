@@ -69,12 +69,11 @@ public class UserInteraction {
   }
 
   private Intent createApproveIntent(PeeringSession session, String displayName) {
-    Intent notificationIntent = new Intent(context, MainActivity.class);
-    notificationIntent
+    return new Intent(context, MainActivity.class)
+        .setAction(MainActivity.ACTION_APPROVE_PEER)
         .putExtra(MainActivity.EXTRA_SESSION_ID, session.getId())
-        .putExtra(MainActivity.EXTRA_DISPLAY_NAME, displayName);
-    notificationIntent.setAction(MainActivity.ACTION_APPROVE_PEER);
-    return notificationIntent;
+        .putExtra(MainActivity.EXTRA_DISPLAY_NAME, displayName)
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
   }
 
   private void showNotification(int id, String message, int numberOfItems, Intent intent, boolean ongoing) {

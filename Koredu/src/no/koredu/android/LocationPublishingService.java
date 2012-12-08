@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 import no.koredu.common.UserLocation;
 
 public class LocationPublishingService extends IntentService {
@@ -22,6 +24,7 @@ public class LocationPublishingService extends IntentService {
   private ObjectSender objectSender;
   private DeviceIdProvider deviceIdProvider;
   private UserInteraction userInteraction;
+  private Bus bus;
   private LocationManager locationManager;
   private PendingIntent sendLocationIntent;
 
@@ -37,8 +40,16 @@ public class LocationPublishingService extends IntentService {
     objectSender = reg.getObjectSender();
     deviceIdProvider = reg.getDeviceIdProvider();
     userInteraction = reg.getUserInteraction();
+    bus = reg.getBus();
+    bus.register(this);
     locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     sendLocationIntent = createPendingIntent();
+  }
+
+  @Override
+  public void onDestroy() {
+    bus.unregister(this);
+    super.onDestroy();
   }
 
   @Override
@@ -149,5 +160,15 @@ public class LocationPublishingService extends IntentService {
         location.hasBearing() ? location.getBearing() : null,
         location.hasSpeed() ? location.getSpeed() : null);
   }
+
+  @Subscribe
+  public void peerCountUpdated(PeerCountUpdateEvent event) {
+    int peerCount = event.getPeerCount();
+    userInteraction.showActiveSessionsNotification(peerCount);
+    if (peerCount == 0) {
+      doShutdown();
+    }
+  }
+
 
 }

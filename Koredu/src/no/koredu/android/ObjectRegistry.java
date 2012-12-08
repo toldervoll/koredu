@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
-import no.koredu.android.auth.AndroidAccountProvider;
 import no.koredu.android.database.AndroidDatabaseManager;
 import no.koredu.android.database.DatabaseManager;
 
@@ -26,11 +25,10 @@ public class ObjectRegistry {
   private final SmsSender smsSender;
   private final DisplayNameResolver displayNameResolver;
   private final UserInteraction userInteraction;
-  private final PhoneNumberVerifier phoneNumberVerifier;
   private final LocationPublisher locationPublisher;
   private final PeeringClient peeringClient;
   private final SmsProcessor smsProcessor;
-  private final AccountProvider accountProvider;
+  private final PeerCountUpdater peerCountUpdater;
 
   public static synchronized ObjectRegistry get(Context context) {
     if (instance == null) {
@@ -57,12 +55,11 @@ public class ObjectRegistry {
     smsSender = new AndroidSmsSender();
     displayNameResolver = new DisplayNameResolver(context);
     userInteraction = new UserInteraction(context, displayNameResolver);
-    phoneNumberVerifier = new PhoneNumberVerifier(databaseManager, deviceIdProvider, objectSender);
     locationPublisher = new AndroidLocationPublisher(context);
+    peerCountUpdater = new PeerCountUpdater(databaseManager, bus);
     peeringClient = new PeeringClient(databaseManager, deviceIdProvider, displayNameResolver, objectSender,
-        locationPublisher, userInteraction, phoneNumberVerifier, bus);
-    smsProcessor = new SmsProcessor(phoneNumberVerifier, peeringClient);
-    accountProvider = new AndroidAccountProvider(context);
+        locationPublisher, userInteraction, bus, peerCountUpdater);
+    smsProcessor = new SmsProcessor(peeringClient);
     long duration = System.currentTimeMillis() - startTime;
     Log.v(TAG, "initialized in " + duration + " ms");
   }
@@ -99,10 +96,6 @@ public class ObjectRegistry {
     return userInteraction;
   }
 
-  public PhoneNumberVerifier getPhoneNumberVerifier() {
-    return phoneNumberVerifier;
-  }
-
   public LocationPublisher getLocationPublisher() {
     return locationPublisher;
   }
@@ -115,8 +108,7 @@ public class ObjectRegistry {
     return smsProcessor;
   }
 
-  public AccountProvider getAccountProvider() {
-    return accountProvider;
+  public PeerCountUpdater getPeerCountUpdater() {
+    return peerCountUpdater;
   }
-
 }

@@ -21,7 +21,7 @@ public class DisplayNameResolver {
     if (cursor.moveToFirst()) {
       return cursor.getString(0);
     } else {
-      return null;
+      return "???";
     }
   }
 }

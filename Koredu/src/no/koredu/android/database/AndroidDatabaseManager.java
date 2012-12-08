@@ -64,8 +64,8 @@ public class AndroidDatabaseManager implements DatabaseManager {
     long now = System.currentTimeMillis();
     try {
       return getHelper().getPeerDao().queryBuilder()
-          //.where()
-          //.gt("validUntil", now)
+          .where()
+          .gt("validUntil", now)
           .query();
     } catch (SQLException e) {
       throw new RuntimeException(e);
