@@ -10,10 +10,15 @@ import no.koredu.common.UserLocation;
 public class GCMIntentService extends GCMBaseIntentService {
 
   private final static String TAG = GCMIntentService.class.getName();
+  public static final String SENDER_ID = "430522666716";
 
   private JsonMapper jsonMapper;
   private SmsSender smsSender;
   private PeeringClient peeringClient;
+
+  public GCMIntentService() {
+    super(SENDER_ID);
+  }
 
   @Override
   public void onCreate() {
@@ -22,11 +27,6 @@ public class GCMIntentService extends GCMBaseIntentService {
     jsonMapper = reg.getJsonMapper();
     smsSender = reg.getSmsSender();
     peeringClient = reg.getPeeringClient();
-  }
-
-  @Override
-  protected void onError(Context context, String errorId) {
-    Log.d(TAG, "onError called, errorId=" + errorId);
   }
 
   @Override
@@ -50,6 +50,22 @@ public class GCMIntentService extends GCMBaseIntentService {
   private void handleSessionConfirmation(String data, boolean approved) {
     PeeringSession session = jsonMapper.fromJson(data, PeeringSession.class);
     peeringClient.handleSessionConfirmation(session, approved);
+  }
+
+  @Override
+  protected void onError(Context context, String errorId) {
+    Log.d(TAG, "onError called, errorId=" + errorId);
+  }
+
+  @Override
+  protected boolean onRecoverableError(Context context, String errorId) {
+    Log.d(TAG, "onRecoverableError called, errorId=" + errorId);
+    return true;
+  }
+
+  @Override
+  protected void onDeletedMessages(Context context, int total) {
+    Log.d(TAG, "onDeletedMessages called, total=" + total);
   }
 
   @Override

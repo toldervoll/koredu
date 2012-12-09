@@ -13,7 +13,6 @@ import java.util.concurrent.ExecutionException;
  */
 public class GCMDeviceIdProvider implements DeviceIdProvider {
 
-  private static final String SENDER_ID = "430522666716";
   private static final String TAG = GCMDeviceIdProvider.class.getName();
 
   private final Context context;
@@ -23,8 +22,6 @@ public class GCMDeviceIdProvider implements DeviceIdProvider {
   public GCMDeviceIdProvider(Context context, ObjectSender objectSender) {
     this.context = context;
     this.objectSender = objectSender;
-    GCMRegistrar.checkDevice(context);
-    GCMRegistrar.checkManifest(context);
     new WaitForDeviceIdTask().execute();
   }
 
@@ -43,10 +40,12 @@ public class GCMDeviceIdProvider implements DeviceIdProvider {
   private class WaitForDeviceIdTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
+      GCMRegistrar.checkDevice(context);
+      GCMRegistrar.checkManifest(context);
       String regId = GCMRegistrar.getRegistrationId(context);
       if (regId.equals("")) {
         Log.v(TAG, "Registering with GCM");
-        GCMRegistrar.register(context, SENDER_ID);
+        GCMRegistrar.register(context, GCMIntentService.SENDER_ID);
       } else {
         Log.v(TAG, "Already registered with GCM");
       }

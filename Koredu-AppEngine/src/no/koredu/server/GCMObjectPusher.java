@@ -1,9 +1,8 @@
 package no.koredu.server;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.android.gcm.server.Message;
-import com.google.android.gcm.server.Sender;
-import com.google.appengine.labs.repackaged.com.google.common.collect.Lists;
+import com.google.android.gcm.server.*;
+import com.google.common.collect.Lists;
 import no.koredu.common.Sanitizable;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.util.logging.Logger;
 public class GCMObjectPusher implements ObjectPusher {
 
   private static final Logger log = Logger.getLogger(GCMObjectPusher.class.getName());
-  private static final String GCM_API_KEY = "AIzaSyCj5w_38CI0Sj03VEx_2-3q03Ej18gx5SM";
+  private static final String GCM_API_KEY = "AIzaSyBHPdIvAavNekQATYDdcKzrauH263BD9vc";
 
   private final ObjectMapper jsonMapper = new ObjectMapper();
 
@@ -26,9 +25,28 @@ public class GCMObjectPusher implements ObjectPusher {
         .addData("action", "SEND_SMS")
         .addData("message", smsMessage)
         .addData("phoneNumber", phoneNumber)
+        .timeToLive(0)
+        .delayWhileIdle(false)
         .build();
     try {
-      sender.send(message, deviceIdList, 5);
+      MulticastResult multicastResult = sender.send(message, deviceIdList, 5);
+      for (Result result : multicastResult.getResults()) {
+        if (result != null) {
+          String canonicalRegId = result.getCanonicalRegistrationId();
+          if (canonicalRegId != null) {
+            // same device has more than one registration ID: update database
+            log.warning("same device has more than one registration ID: TODO: update database. " +
+                "Got canonicalRegId=" + canonicalRegId + " for result=" + result);
+          }
+        } else {
+          String error = result.getErrorCodeName();
+          log.warning("Got error=" + error + " for result=" + result);
+          if (error.equals(Constants.ERROR_NOT_REGISTERED)) {
+            // application has been removed from device - unregister database
+            log.info("application has been removed from device - TODO: unregister in database");
+          }
+        }
+      }
     } catch (IOException e) {
       throw new RuntimeException("Failed to ask " + deviceIdList + " to send SMS " + smsMessage + " to " + phoneNumber,
           e);
